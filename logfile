@@ -1,0 +1,4 @@
+2021-04-18 21:44:32.751 EDT [1798] FATAL:  data directory "/Users/connormahern/Desktop/Caled/app/postgres" has invalid permissions
+2021-04-18 21:44:32.751 EDT [1798] DETAIL:  Permissions should be u=rwx (0700) or u=rwx,g=rx (0750).
+2021-04-18 21:45:45.883 EDT [1813] FATAL:  data directory "/Users/connormahern/Desktop/Caled/app/postgres" has invalid permissions
+2021-04-18 21:45:45.883 EDT [1813] DETAIL:  Permissions should be u=rwx (0700) or u=rwx,g=rx (0750).

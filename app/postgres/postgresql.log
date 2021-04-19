@@ -1,0 +1,15 @@
+2021-04-18 21:51:38.797 EDT [1886] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-04-18 21:51:38.799 EDT [1886] LOG:  listening on IPv6 address "::1", port 5432
+2021-04-18 21:51:38.799 EDT [1886] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-04-18 21:51:38.800 EDT [1886] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-04-18 21:51:38.806 EDT [1888] LOG:  database system was shut down at 2021-04-18 21:51:38 EDT
+2021-04-18 21:51:38.814 EDT [1886] LOG:  database system is ready to accept connections
+2021-04-18 23:17:48.989 EDT [3015] ERROR:  null value in column "moduleId" of relation "Assignment" violates not-null constraint
+2021-04-18 23:17:48.989 EDT [3015] DETAIL:  Failing row contains (1, Assignment#1, 1, This is a Description Mate!, null, 2021-04-18 23:59:00, null).
+2021-04-18 23:17:48.989 EDT [3015] STATEMENT:  INSERT INTO "Assignment" (name, "courseId", description, "moduleId", "dueDate", "fileLoc") VALUES ('Assignment#1', 1, 'This is a Description Mate!', NULL, '2021-04-18 23:59', NULL) RETURNING "Assignment".id
+2021-04-18 23:41:51.631 EDT [3345] ERROR:  subquery must return only one column at character 151
+2021-04-18 23:41:51.631 EDT [3345] STATEMENT:  INSERT INTO "Assignment" (name, "courseId", description, "moduleId", "dueDate", "fileLoc") VALUES ('Assignment1', 3, 'This is a Working Assignment!', (SELECT "Module".id, "Module".name, "Module"."courseId" 
+	FROM "Module" 
+	WHERE "Module".name = 'Module1'), '2021-04-18 23:59', NULL) RETURNING "Assignment".id
+2021-04-18 23:43:39.665 EDT [3376] ERROR:  relation "Assignments" does not exist at character 15
+2021-04-18 23:43:39.665 EDT [3376] STATEMENT:  select * from "Assignments";

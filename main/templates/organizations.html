@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card-deck" style="padding-top: 10px;">
+    
+    {% for o in organizations %}
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+        <h5 class="card-header mb-3">{{ o.name }}</h5>
+        <form method = "POST" action = "/organizations">
+            <button type="submit" name="orgPageReroute" value= {{ o.id }} class="btn btn-primary"> See Details </button>
+        </form>
+    
+        </div>
+    </div>
+    {% endfor %}
+    <form action="/organizationAddition">
+        <a href="organizationAddition.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Create Organization </button></a> 
+    </form> 
+    
+</div>
+
+
+
+
+
+
+{% endblock %}

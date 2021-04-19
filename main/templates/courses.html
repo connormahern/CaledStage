@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card-deck" style="padding-top: 10px;">
+    
+    {% for c in course %}
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+        <h5 class="card-header mb-3">{{ c.name }}</h5>
+        <h6 class="card-title">Instructor {{c.teacherId}}</h6>
+        <p class="card-text">{{ c.enrolledId }}</p>
+
+        <form method = "post" action = "/courses">
+            <!-- <a href=coursePage > <button type = "courseReroute" name = "courseReroute" class="btn btn-primary" value={{ c.id }}> See Details </button></a> -->
+            <button type="submit" name="courseReroute" value= {{ c.id }} class="btn btn-primary"> See Details </button>
+        </form>
+    
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+
+{% endblock %}

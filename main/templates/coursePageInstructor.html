@@ -1,0 +1,199 @@
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Base </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+
+        .customButton1 {
+            width: 150px;
+        }
+        .customButton2 {
+            width: 200px;
+        }
+        .customButton3 {
+            width: 150px;
+        }
+        .rowMargin1 {
+            margin-top: 35px;
+            margin-left: 150px; 
+            margin-bottom: 35px; 
+        }
+        .rowMargin2 {
+            margin-top: 5px;
+        }
+        .courseName{
+            margin-top: 15px;
+            margin-bottom: 35px; 
+        }
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 100%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 10px;
+            margin-bottom: 35px; 
+        }
+        .innerL-box-shadow{
+            margin-left: 30px;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            margin-right: px;
+        }
+        .innerR-box-shadow{
+            margin-right: 30px;
+            margin-left: 50px;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+
+        .announ-box-shadow{
+            margin-right: 10px;
+            margin-left: 10px;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+            
+        }
+
+        .module-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+        .asssignment-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+
+    </style>
+
+</head>
+
+{% block content %}
+{% include 'nav.html' %}
+<main>
+    <section class="container rounded box-shadow">
+        <div class="row mb-2 rowMargin1">
+            <div class="col-md-8 courseName">
+                <h1> Welcome to {{courseInfo['courseNumber']}} </h1>
+                <h6> {{courseInfo['instructorName']}}  |  {{courseInfo['intstructorEmail']}}</h6>
+            </div>
+            <div class="col-md-4">
+                <form action="/courseStudentAddition">
+                    <a href="courseStudentAddition.html"> <button type = "submit" name = "addStudents" class="btn btn-primary customButton1" > Add Students </button></a> 
+                </form> 
+                <button type = "editCourse" name = "editCourse" class="btn btn-primary customButton1" > Edit {{courseInfo['courseNumber']}} </button>
+            </div> 
+        </div>
+
+        <div class="row mb-2 rowMargin2">
+
+            <div class="col-md-4 rounded innerL-box-shadow">
+                <p> {{courseInfo['courseDescription']}} </p>
+            </div>
+
+            <div class="col-md-6 rounded innerR-box-shadow">
+                <div class="row mb-2">
+                    <div class="col-md-8" style="margin-top: 20px;">
+                        <h6>Announcements</h6>
+                    </div>
+                    <div class="col-md-4" style="margin-top: 10px;">
+                        <form action="/newAnnouncement">
+                            <a href="newAnnouncement.html"> <button type = "newAnnouncement" name = "newAnnouncement" value = {{courseInfo.courseName}} class="btn btn-primary" > Make Announcement </button></a> 
+                        </form> 
+                    </div>
+                </div>
+
+                    {% for announ in courseInfo['announcements'] %}
+                    <div class="row rounded announ-box-shadow">
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <strong class="d-block text-gray-dark"> {{announ['subjectLine']}}  {{announ['time']}} </strong>
+                            {{announ['announcement']}}
+                        </p>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+
+        <div class="row mb-2 rowMargin2">
+            <div class="col-md-5 rounded module-box-shadow">
+                <div class="row mb-2">
+                    <div class="col-md-7" style="margin-top: 20px;">
+                        <h6>Modules</h6>
+                    </div>
+                    <div class="col-md-4" style="margin-top: 10px;">
+                        <form action="/newModule">
+                            <button type = "submit" name = "newModules" class="btn btn-primary customButton3" > New Modules </button>
+                        </form> 
+                    </div>
+                </div>
+                {% for m in courseInfo['modules'] %}
+                    <div class="row rounded announ-box-shadow">
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <strong class="d-block text-gray-dark text-center"> {{m['moduleName']}}</strong>
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-5 rounded asssignment-box-shadow">
+                <div class="row mb-2">
+                    <div class="col-md-7" style="margin-top: 20px;">
+                        <h6>Assignments</h6>
+                    </div>
+                    <div class="col-md-4" style="margin-top: 10px;">
+                        <form action="/newAssignment">
+                            <button type = "submit" name = "newAssignment" class="btn btn-primary customButton3" > New Assignment </button>
+                        </form> 
+                    </div>
+                </div>
+                {% for a in courseInfo['assignments'] %}
+                    <div class="row rounded announ-box-shadow">
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <strong class="d-block text-gray-dark"> {{a['name']}}  {{a['dueDate']}} </strong>
+                            {{a['desc']}}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+            
+
+        </div>
+
+
+
+
+
+
+    </section>
+    
+            
+
+
+    
+    
+
+</main>
+
+
+
+
+
+{% endblock %}
+</html>

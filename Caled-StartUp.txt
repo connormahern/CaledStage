@@ -1,0 +1,25 @@
+1. Start postgres sever called Caled
+
+2. navigate into Caled folder
+
+3. source venv/bin/activate
+
+4. export FLASK_APP=run.py
+
+5. export FLASK_CONFIG="development"
+
+6. export DATABASE_URL="postgres:///caled_live"
+
+6. flask run
+
+export APP_SETTINGS="instance.config_defult.DevelopmentConfig"
+
+
+## how to push changes to postgres heroku db 
+# flask db revision
+# flask db migrate
+# flask db stamp head 
+# flask db upgrade
+# python manage.py db migrate
+# python manage.py db stamp head
+# python manage.py db upgrade

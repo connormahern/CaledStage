@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Profile </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+
+html,
+        body {
+            height: 100%;
+        }
+
+        .body1 {
+            height: 80%;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -ms-flex-align: center;
+            -ms-flex-pack: center;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+        }
+        
+        .form-send {
+            width: 100%;
+            padding: 15px;
+            margin: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .form-send .checkbox {
+            font-weight: 400;
+        }
+        .form-send .form-group{
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .form-send .form-control:focus {
+            z-index: 2;
+        }
+        .form-group select[type="textA"]{
+            max-height: 500px;
+
+        }
+        
+    
+    </style>
+</head>
+
+{% block content %}
+	{% include 'nav.html' %}
+    <body>
+        <div class="body1">
+
+            <form class = "form-send" method="POST" action="/courseAddition">
+                <div class="form-group">
+                    <label for="CourseName"> Course Name :</label>
+                    <input type = "course"class="form-control" name="course" id="courseName" placeholder="C-200 : Intro to Computer Sience (Example Course Name)">
+                    <label for="SemesterName" style="margin-top: 10px;"> Semester Name :</label>
+                    <input type ="semester" class="form-control" name="semester" id="semesterName" placeholder="FA21">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Organization :</label>
+                    <select class="form-control" id="OrganizationSelect" name="organization" type="organization" r>
+                        <option selected>Select Organization </option>
+                        
+                    </select>
+                </div>
+                <div class="form-group" type="textA">
+                    <label for="CourseDescription"> Course Description :</label>
+                    <textarea class="form-control" name="description" id="descriptionName" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
+            </form>
+        </div>
+    </body>
+
+{% endblock %}
+
+
+</html> 

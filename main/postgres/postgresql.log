@@ -1,0 +1,30 @@
+2021-03-22 21:24:31.086 EDT [4824] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-03-22 21:24:31.088 EDT [4824] LOG:  listening on IPv6 address "::1", port 5432
+2021-03-22 21:24:31.088 EDT [4824] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-03-22 21:24:31.088 EDT [4824] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-03-22 21:24:31.093 EDT [4825] LOG:  database system was shut down at 2021-03-22 21:22:34 EDT
+2021-03-22 21:24:31.103 EDT [4824] LOG:  database system is ready to accept connections
+2021-03-22 21:24:31.230 EDT [4832] FATAL:  database "connormahern" does not exist
+2021-03-22 21:24:56.827 EDT [4839] FATAL:  database "connormahern" does not exist
+2021-03-22 21:25:14.709 EDT [4841] FATAL:  database "connormahern" does not exist
+2021-03-22 21:25:22.480 EDT [4846] FATAL:  database "connormahern" does not exist
+2021-03-22 21:27:53.386 EDT [5056] FATAL:  database "connormahern" does not exist
+2021-03-22 21:28:11.960 EDT [5058] FATAL:  role "database" does not exist
+2021-03-22 21:28:21.487 EDT [5060] FATAL:  role "database" does not exist
+2021-03-22 21:29:02.629 EDT [5063] FATAL:  database "Caled" does not exist
+2021-03-22 21:29:40.525 EDT [5068] FATAL:  database "Caled" does not exist
+2021-03-22 22:35:46.923 EDT [7235] FATAL:  database "caled" does not exist
+2021-03-22 22:35:47.085 EDT [7236] FATAL:  database "caled" does not exist
+2021-03-22 22:40:26.431 EDT [4826] PANIC:  could not open file "/Users/connormahern/Desktop/Caled/app/postgres/global/pg_control": No such file or directory
+2021-03-22 22:40:26.433 EDT [4824] LOG:  checkpointer process (PID 4826) was terminated by signal 6: Abort trap: 6
+2021-03-22 22:40:26.433 EDT [4824] LOG:  terminating any other active server processes
+2021-03-22 22:40:26.433 EDT [7308] WARNING:  terminating connection because of crash of another server process
+2021-03-22 22:40:26.433 EDT [7308] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2021-03-22 22:40:26.433 EDT [7308] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2021-03-22 22:40:26.434 EDT [4829] WARNING:  terminating connection because of crash of another server process
+2021-03-22 22:40:26.434 EDT [4829] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2021-03-22 22:40:26.434 EDT [4829] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2021-03-22 22:40:26.438 EDT [7310] FATAL:  the database system is in recovery mode
+2021-03-22 22:40:26.440 EDT [4824] LOG:  all server processes terminated; reinitializing
+2021-03-22 22:40:26.442 EDT [4824] FATAL:  could not stat data directory "/Users/connormahern/Desktop/Caled/app/postgres": No such file or directory
+2021-03-22 22:40:26.442 EDT [4824] LOG:  database system is shut down
