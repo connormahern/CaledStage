@@ -131,3 +131,42 @@
 2021-04-22 01:10:30.537 EDT [24194] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
 2021-04-22 01:10:30.537 EDT [24194] STATEMENT:  
 	DROP TABLE "Organization"
+2021-04-22 01:42:21.860 EDT [25407] ERROR:  cannot drop table "User" because other objects depend on it
+2021-04-22 01:42:21.860 EDT [25407] DETAIL:  constraint Admin_id_fkey on table "Admin" depends on table "User"
+	constraint Instructor_id_fkey on table "Instructor" depends on table "User"
+	constraint Message_recipientId_fkey on table "Message" depends on table "User"
+	constraint Message_senderId_fkey on table "Message" depends on table "User"
+	constraint Student_id_fkey on table "Student" depends on table "User"
+	constraint UserOrganizations_userId_fkey on table "UserOrganizations" depends on table "User"
+2021-04-22 01:42:21.860 EDT [25407] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 01:42:21.860 EDT [25407] STATEMENT:  
+	DROP TABLE "User"
+2021-04-22 01:42:33.795 EDT [25416] ERROR:  cannot drop table "User" because other objects depend on it
+2021-04-22 01:42:33.795 EDT [25416] DETAIL:  constraint Admin_id_fkey on table "Admin" depends on table "User"
+	constraint Instructor_id_fkey on table "Instructor" depends on table "User"
+	constraint Message_recipientId_fkey on table "Message" depends on table "User"
+	constraint Message_senderId_fkey on table "Message" depends on table "User"
+	constraint Student_id_fkey on table "Student" depends on table "User"
+	constraint UserOrganizations_userId_fkey on table "UserOrganizations" depends on table "User"
+2021-04-22 01:42:33.795 EDT [25416] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 01:42:33.795 EDT [25416] STATEMENT:  
+	DROP TABLE "User"
+2021-04-22 01:46:01.397 EDT [25523] ERROR:  cannot drop table "Module" because other objects depend on it
+2021-04-22 01:46:01.397 EDT [25523] DETAIL:  constraint Assignment_moduleId_fkey on table "Assignment" depends on table "Module"
+2021-04-22 01:46:01.397 EDT [25523] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 01:46:01.397 EDT [25523] STATEMENT:  
+	DROP TABLE "Module"
+2021-04-22 01:46:54.105 EDT [25558] ERROR:  relation "User" already exists
+2021-04-22 01:46:54.105 EDT [25558] STATEMENT:  
+	CREATE TABLE "User" (
+		id SERIAL NOT NULL, 
+		email VARCHAR(100), 
+		password VARCHAR(100), 
+		name VARCHAR(1000), 
+		"userType" VARCHAR(100), 
+		"hasAccess" BOOLEAN, 
+		CONSTRAINT "User_pkey" PRIMARY KEY (id), 
+		CONSTRAINT "User_email_key" UNIQUE (email)
+	)
+	
+	
