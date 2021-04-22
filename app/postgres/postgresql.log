@@ -100,3 +100,14 @@
 2021-04-21 23:55:00.874 EDT [21764] LOG:  unexpected EOF on client connection with an open transaction
 2021-04-21 23:55:00.874 EDT [21784] LOG:  unexpected EOF on client connection with an open transaction
 2021-04-21 23:55:00.873 EDT [21791] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 00:24:23.154 EDT [22707] ERROR:  cannot drop table "Student" because other objects depend on it
+2021-04-22 00:24:23.154 EDT [22707] DETAIL:  constraint StudentCourses_studentId_fkey on table "StudentCourses" depends on table "Student"
+	constraint AssignmentGrades_studentId_fkey on table "AssignmentGrades" depends on table "Student"
+2021-04-22 00:24:23.154 EDT [22707] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 00:24:23.154 EDT [22707] STATEMENT:  
+	DROP TABLE "Student"
+2021-04-22 00:27:26.293 EDT [22766] ERROR:  cannot drop table "Admin" because other objects depend on it
+2021-04-22 00:27:26.293 EDT [22766] DETAIL:  constraint Organization_adminId_fkey on table "Organization" depends on table "Admin"
+2021-04-22 00:27:26.293 EDT [22766] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 00:27:26.293 EDT [22766] STATEMENT:  
+	DROP TABLE "Admin"
