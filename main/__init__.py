@@ -10,7 +10,7 @@ import re
 
 db = SQLAlchemy()
 app = Flask(__name__)
-db.init_app(app)
+
 
 # init SQLAlchemy so we can use it later in our models
 def create_app(config_name):
@@ -24,7 +24,7 @@ def create_app(config_name):
         uri = uri.replace("postgres://", "postgresql://", 1)
     os.environ['DATABASE_URL'] = uri
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-    #db.init_app(app)
+    db.init_app(app)
     
 
     login_manager = LoginManager()
@@ -33,9 +33,9 @@ def create_app(config_name):
     
     from .models import User
 
-    # @app.before_first_request
-    # def create_tables():
-    #       db.create_all()
+    @app.before_first_request
+    def create_tables():
+          db.create_all()
 
     migrate = Migrate(app, db)
     
