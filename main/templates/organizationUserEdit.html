@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card-deck" style="padding-top: 10px;">
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+        <h5 class="card-header mb-3">Organization: {{ orgInfo.name }}</h5>
+        <h6 class="card-title">Administrator: {{orgInfo.admin}}</h6>
+        <p class="card-text">Users: </p>
+
+        
+        {% for o in orgInfo.users %}
+            <div class="row mb-2 text-center">
+
+
+                <div class="col-6 text-end">
+                    <p class="card-text"> {{ o[0] }}  -  {{ o[1] }} </p>
+                </div>
+
+                <div class="col-3 text-start">
+                    <form method = "POST" action = "/organizationUserEdit">
+                        <button type="submit" name="userEmail" value={{o[1]}} class="btn btn-primary"> Delete User </button>
+                    </form>
+                </div>
+
+
+            </div>
+        {% endfor %}
+    
+        
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+{% endblock %}

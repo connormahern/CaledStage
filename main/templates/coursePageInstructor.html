@@ -41,7 +41,7 @@
         }
         .innerL-box-shadow{
             margin-left: 30px;
-            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            box-shadow: .15rem .15rem .35rem grey;
             border: solid rgba(0, 0, 0, .05) 1px;
             margin-bottom: 35px; 
             margin-right: px;
@@ -49,7 +49,7 @@
         .innerR-box-shadow{
             margin-right: 30px;
             margin-left: 50px;
-            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            box-shadow: .15rem .15rem .35rem grey;
             border: solid rgba(0, 0, 0, .05) 1px;
             margin-bottom: 35px; 
             
@@ -68,7 +68,7 @@
         .module-box-shadow{
             margin-right: 10px;
             margin-left: 40px;
-            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            box-shadow: .15rem .15rem .25rem grey;
             border: solid rgba(0, 0, 0, .05) 1px;
             margin-bottom: 35px; 
             
@@ -76,10 +76,19 @@
         .asssignment-box-shadow{
             margin-right: 10px;
             margin-left: 40px;
-            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            box-shadow: .15rem .15rem .35rem grey;
             border: solid rgba(0, 0, 0, .05) 1px;
             margin-bottom: 35px; 
             
+        }
+        a:active{
+            color: #5288fb;
+        }
+        a:hover{
+            color: black;
+        }
+        a:visited{
+            color: #5288fb;
         }
 
     </style>
@@ -116,7 +125,7 @@
                     </div>
                     <div class="col-md-4" style="margin-top: 10px;">
                         <form action="/newAnnouncement">
-                            <a href="newAnnouncement.html"> <button type = "newAnnouncement" name = "newAnnouncement" value = {{courseInfo.courseName}} class="btn btn-primary" > Make Announcement </button></a> 
+                            <a href="newAnnouncement.html"> <button type = "newAnnouncement" name = "newAnnouncement" value = {{courseInfo.courseNumber}} class="btn btn-primary" > Make Announcement </button></a> 
                         </form> 
                     </div>
                 </div>
@@ -135,39 +144,59 @@
         <div class="row mb-2 rowMargin2">
             <div class="col-md-5 rounded module-box-shadow">
                 <div class="row mb-2">
-                    <div class="col-md-7" style="margin-top: 20px;">
-                        <h6>Modules</h6>
+                    <div class="col-md-5 text-start" style="margin-top: 20px; margin-left: 35px;">
+                        <a href=/modules>
+                            <button type="button" class="btn btn-primary col-12"> Modules </button>
+                        </a>
                     </div>
-                    <div class="col-md-4" style="margin-top: 10px;">
+                    <div class="col-md-5 text-end" style="margin-top: 20px; margin-right: 10px;">
                         <form action="/newModule">
-                            <button type = "submit" name = "newModules" class="btn btn-primary customButton3" > New Modules </button>
+                            <button type = "submit" name = "newModule" class="btn btn-primary col-12" > New Module </button>
                         </form> 
                     </div>
                 </div>
                 {% for m in courseInfo['modules'] %}
-                    <div class="row rounded announ-box-shadow">
-                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <strong class="d-block text-gray-dark text-center"> {{m['moduleName']}}</strong>
+                    <div class="row rounded announ-box-shadow col-10 text-center" style="margin-left: 30px;">
+
+                        <form method="POST" action="/modules">
+                
+                            <button class="btn btn-info col-10" style="margin-top: 5px;" type="submit" name = 'mId' value = {{m.mId}} > {{m['moduleName']}} </button>
+                                
+                        </form>
+
+                        <p class="media-body pb-3 mb-0 small lh-125">
+                            <strong class="d-block text-gray-dark text-center"> {{m['mDesc']}}</strong>
                         </p>
+                        
                     </div>
                 {% endfor %}
             </div>
             <div class="col-md-5 rounded asssignment-box-shadow">
                 <div class="row mb-2">
-                    <div class="col-md-7" style="margin-top: 20px;">
-                        <h6>Assignments</h6>
+                    <div class="col-md-5 text-start" style="margin-top: 20px; margin-left: 15px; margin-bottom: 5px;">
+                        <a href=/assignments>
+                            <button type="button" class="btn btn-primary col-11"> Assignments </button>
+                        </a>
                     </div>
-                    <div class="col-md-4" style="margin-top: 10px;">
+                    <div class="col-md-6 text-end" style="margin-top: 20px; margin-bottom: 5px;">
                         <form action="/newAssignment">
-                            <button type = "submit" name = "newAssignment" class="btn btn-primary customButton3" > New Assignment </button>
+                            <button type = "submit" name = "newAssignment" class="btn btn-primary col-11" > New Assignment </button>
                         </form> 
                     </div>
                 </div>
                 {% for a in courseInfo['assignments'] %}
-                    <div class="row rounded announ-box-shadow">
-                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <strong class="d-block text-gray-dark"> {{a['name']}}  {{a['dueDate']}} </strong>
-                            {{a['desc']}}
+                    <div class="row rounded announ-box-shadow col-10 text-center" style="margin-left: 30px;">
+
+                        <form method="POST" action="/assignments">
+                
+                            <button class="btn btn-info col-10" style="margin-top: 5px;" type="submit" name = 'aId' value = {{a.id}} > {{a['name']}} </button>
+                                
+                        </form>
+                        <p class="media-body pb-3 mb-0 small lh-125">
+                            <strong class="d-block text-end text-gray-dark"> {{a['dueDate']}} </strong>
+                            <p class="text-start">
+                                {{a['desc']}}
+                            </p>
                         </p>
                     </div>
                 {% endfor %}
@@ -184,11 +213,6 @@
     </section>
     
             
-
-
-    
-    
-
 </main>
 
 

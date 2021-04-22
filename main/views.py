@@ -1,13 +1,16 @@
 
 import re
-from flask import Blueprint, render_template, redirect, url_for, request, flash, session, jsonify, Flask, current_app, g
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session, jsonify, Flask, current_app, g, send_file
 from flask_login import login_required, current_user
 from flask_login.utils import login_fresh
+from sqlalchemy.sql.expression import null
 from werkzeug.wrappers import Request
 from .models import Announcement, Instructor, Module, User, Message, Course, StudentCourses, Organization, UserOrganizations, Assignment, File
 from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy.sql import text
 from .__init__ import app, db
+from main import models
+from io import BytesIO
 
 #engine = create_engine('sqlite:///db.sqlite')
 views = Blueprint('views', __name__)
@@ -190,13 +193,13 @@ def coursePage(rerouteName):
     if lengthM > 3 :
         while countM > (lengthM - 3) :
             mod = courseModuels[countM]
-            currentMod= {'moduleName' : mod.name}
+            currentMod= {'moduleName' : mod.name, 'mDesc' : mod.description, 'mId' : mod.id}
             moduleList.append(currentMod)
             countM -= 1
         courseInfo['modules'] = moduleList
     else :
         for m in courseModuels :
-            currentMod= {'moduleName' : m.name}
+            currentMod= {'moduleName' : m.name, 'mDesc' : m.description, 'mId' : m.id}
             moduleList.append(currentMod)
         courseInfo['modules'] = moduleList
 
@@ -207,13 +210,13 @@ def coursePage(rerouteName):
     if lengthAs > 3 :
         while countAs > (lengthAs - 3) :
             a = courseAssignment[countAs]
-            currentAs= {'name' : a.name, 'desc' : a.description}
+            currentAs= {'name' : a.name, 'desc' : a.description, 'dueDate' : a.dueDate, 'id' : a.id}
             assignmentList.append(currentAs)
             countAs -= 1
         courseInfo['assignments'] = assignmentList
     else :
         for a in courseAssignment :
-            currentAs= {'name' : a.name, 'desc' : a.description, 'dueDate' : a.dueDate}
+            currentAs= {'name' : a.name, 'desc' : a.description, 'dueDate' : a.dueDate, 'id' : a.id}
             assignmentList.append(currentAs)
         courseInfo['assignments'] = assignmentList
 
@@ -221,6 +224,23 @@ def coursePage(rerouteName):
         return render_template('coursePageInstructor.html', courseInfo=courseInfo)
     else : 
         return render_template('coursePage.html', courseInfo=courseInfo)
+
+@views.route('/courseAddition')
+def course_addition() :
+
+    current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Admin' or current.userType == 'Instructor' :
+
+        organizationS = UserOrganizations.query.filter(UserOrganizations.userId == current.id)
+        oList = []
+        for o in organizationS : 
+            orgs = Organization.query.filter(Organization.id == o.organizationId).first()
+            oList.append(orgs.name)
+
+
+        return render_template('courseAddition.html', organizationS = oList)
+    else :
+        return redirect(url_for('views.profile'))
 
 @views.route('/courseAddition', methods=['POST'])
 @login_required
@@ -311,6 +331,182 @@ def new_assignment_post():
 
     return redirect(url_for('views.coursePage', rerouteName=course.id))
 
+@views.route('/assignmentPage', methods=['POST'])
+def assignmentSpecPage_post():
+
+    
+
+    if request.method == 'POST' and request.form['fileDownload']:
+        assignmentId = session['assignmentId']
+        assignment = Assignment.query.filter(Assignment.id == assignmentId).first()
+        fileData = File.query.filter(File.id == assignment.fileLoc).first()
+        return send_file(BytesIO(fileData.data), attachment_filename=fileData.name, as_attachment=True)
+
+    elif request.method == 'POST' and request.form['subDownload']:
+        current = User.query.filter(User.email == session['email']).first()
+        assignmentId = session['assignmentId']
+        assignment = Assignment.query.filter(Assignment.id == assignmentId).first()
+        fileData = File.query.filter(File.userId == current.id and File.assignmentId == assignment.id).first()
+        return send_file(BytesIO(fileData.data), attachment_filename=fileData.name, as_attachment=True)
+    
+    
+    current = User.query.filter(User.email == session['email']).first()
+    assignmentId = session['assignmentId']
+    assignment = Assignment.query.filter(Assignment.id == assignmentId).first()
+    
+    var = request.files['file']
+    newFile = File(name=var.filename, data=var.read(), userId=current.id, assignmentId=assignment.id)
+    if newFile.name != '':
+        db.session.add(newFile)
+        db.session.commit()
+        
+    return redirect(url_for('views.assignmentSpecPage'))
+    
+
+@views.route('/assignmentPage')
+def assignmentSpecPage():
+
+    assignmentId = session['assignmentId']
+    assignment = Assignment.query.filter(Assignment.id == assignmentId).first()
+    course = Course.query.filter(Course.id == assignment.courseId).first()
+    current = User.query.filter(User.email == session['email']).first()
+    #send_file(BytesIO(fileData.data), attachment_filename=fileData.name, as_attachment=True)
+
+  
+    aDict = {
+            "name" : assignment.name,
+            "desc" : assignment.description,
+            "dueDate" : assignment.dueDate,
+            "fileLoc" : assignment.fileLoc,
+            "aId" : assignment.id,
+            "cName" : course.name
+    }
+    try :
+        fileData = File.query.filter(File.id == assignment.fileLoc).first()
+        aDict["fileName"] = fileData.name
+    except :
+        aDict["fileName"] = None
+
+    
+
+    if current.id == course.instructorId :
+        return render_template('assignmentsPageInstructor.html',id=assignmentId, aDict=aDict)
+    else : 
+
+        submittedFile = File.query.filter(current.id == File.userId and assignment.id == File.assignmentId).first()
+
+        if submittedFile is not None :
+            subCheck = True
+            aDict["subName"] = submittedFile.name
+        else :
+            subCheck = False
+
+        aDict["subCheck"] = subCheck
+        
+
+        return render_template('assignmentsPage.html', id=assignmentId, aDict=aDict)
+
+
+    
+
+@views.route('/assignments', methods=['POST'])
+def assignment_page_post():
+
+    if request.method == 'POST':
+        aId = request.form['aId']
+        session['assignmentId'] = aId
+        return redirect(url_for('views.assignmentSpecPage'))
+
+@views.route('/assignments')
+def assignment_page():
+    course = Course.query.filter(Course.id == session['rerouteName']).first()
+    assignments = Assignment.query.filter(Assignment.courseId == course.id)
+    
+
+    aList = []
+
+    for assign in assignments :
+        aDict = {
+            "name" : assign.name,
+            "desc" : assign.description,
+            "dueDate" : assign.dueDate,
+            "aId" : assign.id
+        }
+
+        aList.append(aDict)
+
+
+    return render_template('assignments.html', courseName = course.name, aList = aList)
+
+@views.route('/modulePage', methods=['POST'])
+def moduleSpecPage_post():
+
+    if request.method == 'POST' and request.form['fileDownload']:
+        mId = session['moduleId']
+        mod = Module.query.filter(Module.id == mId).first()
+        fileData = File.query.filter(File.id == mod.fileLoc).first()
+        return send_file(BytesIO(fileData.data), attachment_filename=fileData.name, as_attachment=True)
+
+@views.route('/modulePage')
+def modulesSpecPage():
+    mId = session['moduleId']
+    m = Module.query.filter(Module.id == mId).first()
+    assignments = Assignment.query.filter(Assignment.moduleId == m.id)
+    course = Course.query.filter(Course.id == m.courseId).first()
+    current = User.query.filter(User.email == session['email']).first()
+    
+    
+
+
+    
+    mDict= {'name' : m.name, 'desc' : m.description, 'id' : m.id, 'cName' : course.name, "fileLoc" : m.fileLoc}
+    aList = []
+    for a in assignments :
+        aList.append(a)
+        mDict["aList"] = aList
+    
+    try :
+        fileData = File.query.filter(File.id == m.fileLoc).first()
+        mDict["fileName"] = fileData.name
+    except :
+        mDict["fileName"] = None
+
+    if current.id == course.instructorId :
+        return render_template('modulePageInstructor.html', courseName = course.name, mDict = mDict)
+    else : 
+        return render_template('modulePage.html', courseName = course.name, mDict = mDict)
+
+    
+
+@views.route('/modules', methods=['POST'])
+def modules_page_post():
+
+    if request.method == 'POST' and request.form['mId'] :
+    
+        mId = request.form['mId']
+        session['moduleId'] = mId
+        return redirect(url_for('views.modulesSpecPage'))
+
+@views.route('/modules')
+def modules_page():
+    course = Course.query.filter(Course.id == session['rerouteName']).first()
+    models = Module.query.filter(Module.courseId == course.id)
+    
+
+    mList = []
+
+    for m in models :
+        mDict= {'name' : m.name, 'desc' : m.description, 'id' : m.id}
+        aList = []
+        assignments = Assignment.query.filter(Assignment.moduleId == m.id)
+        for a in assignments :
+            aList.append(a)
+            mDict["aList"] = aList
+        mList.append(mDict)
+
+
+    return render_template('modules.html', courseName = course.name, mList = mList)
+
 @views.route('/newModule')
 def new_module() :
     course = Course.query.filter(Course.id == session['rerouteName']).first()
@@ -344,15 +540,7 @@ def new_module_post():
     return redirect(url_for('views.coursePage', rerouteName=course.id))
     
 
-@views.route('/courseAddition')
-def course_addition() :
 
-    current = User.query.filter(User.email == session['email']).first()
-    if current.userType == 'Admin' or current.userType == 'Instructor' :
-
-        return render_template('courseAddition.html')
-    else :
-        return redirect(url_for('views.profile'))
 
 
 @views.route('/courseStudentAddition', methods=['POST'])
@@ -467,9 +655,190 @@ def message_post():
 
     return redirect(url_for('views.messages'))
 
-
 #organization back-end implementation
 @views.route('/organizations') #organizations page lists all organizations associated with the admin 
+@login_required
+def organizations(): 
+    current = User.query.filter(User.email == session['email']).first() #get current user (admin)
+    if current.userType == 'Admin':
+        adminId = current.id
+        organizations = Organization.query.filter(Organization.adminId==adminId) #locate all organizations associated with admin
+        
+        return render_template('organizations.html', organizations=organizations) #returns organizations list to organizations page
+    
+    else:
+        return redirect(url_for('views.profile')) #if user is not an admin, they are redirected to the profile page 
+
+@views.route('/organizations', methods=['GET', 'POST'])
+@login_required
+def organization_post():
+
+    if request.method == 'POST':
+        rerouteName = request.form['orgPageReroute']
+        return redirect(url_for('views.organizationPage', rerouteName=rerouteName))
+        
+
+@views.route('/organizationPage/<rerouteName>')
+@login_required
+def organizationPage(rerouteName):
+
+    current = User.query.filter(User.email == session['email']).first()
+    session['organization'] =  int(rerouteName)
+    orgQuery = Organization.query.filter(Organization.id == int(rerouteName)).first()
+    userQuery = UserOrganizations.query.filter(UserOrganizations.organizationId == int(rerouteName))
+    users = []
+    
+    for i in userQuery:
+        users.append(i.userId) #get user ids associated with organizations
+        print(users)
+
+    userList = []
+    for j in range(len(users)):
+        query = User.query.filter(User.id == users[j]).first() #find user email and provide it to organization
+        name = query.name + ",  " + query.email
+        userList.append([query.name, query.email])
+    print(userList)
+    orgInfo = {'name' : orgQuery.name, 'admin' : current.email, 'users' : userList}
+
+    return render_template('organizationPage.html', orgInfo=orgInfo, rerouteName=rerouteName)
+
+@views.route('/organizationPage', methods=['GET', 'POST'])
+@login_required
+def organization_page_post():
+
+    if request.method == 'POST':
+        org = Organization.query.filter(Organization.id == int(session['organization'])).first()
+        
+        users = UserOrganizations.query.filter(Organization.id == int(session['organization']))
+        for i in users:
+            db.session.delete(i)
+            db.session.commit()
+        db.session.delete(org)
+        db.session.commit()
+
+
+        return redirect(url_for('views.organizations'))
+
+@views.route('/organizationAddition', methods=['POST'])
+@login_required
+def organization_addition_post():
+
+
+
+    current = User.query.filter(User.email == session['email']).first()
+    organizationName = request.form.get('organizationName')
+    adminId = current.id
+
+    newOrganization = Organization(name=organizationName, adminId=adminId)
+    db.session.add(newOrganization)
+    db.session.commit()
+
+
+    return redirect(url_for('views.organizations'))
+
+
+@views.route('/organizationAddition')
+@login_required
+def organization_addition() :
+    current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Admin':
+        return render_template('organizationAddition.html')
+    else :
+        return redirect(url_for('views.profile'))
+
+
+@views.route('/organizationUserAddition')
+@login_required
+def organization_user_addition() :
+    current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Admin':
+        return render_template('organizationUserAddition.html')
+    else :
+        return redirect(url_for('views.profile'))    
+
+@views.route('/organizationUserAddition', methods=['POST'])
+@login_required
+def organization_user_addition_post():
+
+    current = User.query.filter(User.email == session['email']).first()
+    userName = request.form.get('userName')
+    userEmail = request.form.get('userEmail')
+    adminId = current.id
+
+    orgId = session.get('organization', None)
+
+    org = Organization.query.filter(orgId == Organization.id).first()
+    #orgUsers = UserOrganizations.query.filter(orgId) == organization.id)
+
+    newUser = User.query.filter(User.email == userEmail).first()
+
+    if newUser:
+        userId = newUser.id
+        addUser = UserOrganizations(organizationId=org.id, userId=userId)
+        db.session.add(addUser)
+        db.session.commit()
+        return redirect(url_for('views.organizationPage', rerouteName=orgId))
+    else:    
+        flash('User not found. Please enter a valid email address')
+        return redirect(url_for('views.organization_user_addition_post'))   
+    
+
+
+@views.route('/organizationUserEdit')
+@login_required
+def organization_user_edit() :
+    current = User.query.filter(User.email == session['email']).first()
+    #session['organization'] =  int(rerouteName)
+    orgQuery = Organization.query.filter(Organization.id == session['organization']).first()
+    userQuery = UserOrganizations.query.filter(UserOrganizations.organizationId == session['organization'])
+    users = []
+    
+    for i in userQuery:
+        users.append(i.userId) #get user ids associated with organizations
+        print(users)
+
+    userList = []
+    for j in range(len(users)):
+        query = User.query.filter(User.id == users[j]).first() #find user email and provide it to organization
+        #name = query.name + ",  " + query.email
+        userList.append([query.name, query.email])
+    print(userList)
+    orgInfo = {'name' : orgQuery.name, 'admin' : current.email, 'users' : userList}
+
+    return render_template('organizationUserEdit.html', orgInfo=orgInfo)  
+
+@views.route('/organizationUserEdit', methods=['POST'])
+@login_required
+def organization_user_edit_post():
+
+    current = User.query.filter(User.email == session['email']).first()
+    userEmail = request.form.get('userEmail')
+    print(userEmail)
+
+    adminId = current.id
+    if request.method == 'POST':
+
+        orgId = session.get('organization', None)
+        print(orgId)
+
+        org = Organization.query.filter(orgId == Organization.id).first()
+        #orgUsers = UserOrganizations.query.filter(orgId) == organization.id)
+
+        newUser = User.query.filter(User.email == userEmail).first()
+
+        if newUser:
+            userId = newUser.id
+            delUser = UserOrganizations.query.filter_by(organizationId=org.id, userId=userId).first()
+            db.session.delete(delUser)
+            db.session.commit()
+            return redirect(url_for('views.organizationPage', rerouteName=orgId))
+        else:    
+            flash('An error occurred. Please try again')
+            return redirect(url_for('views.organization_user_edit'))   
+
+
+#organization back-end implementation
+""" @views.route('/organizations') #organizations page lists all organizations associated with the admin 
 @login_required
 def organizations(): 
     current = User.query.filter(User.email == session['email']).first() #get current user (admin)
@@ -561,7 +930,7 @@ def organization_user_addition() :
     if current.userType == 'Admin':
         return render_template('organizationUserAddition.html')
     else :
-        return redirect(url_for('views.profile'))
+        return redirect(url_for('views.profile')) """
 
 
 #return render_template('organizationPage.html')

@@ -13,3 +13,90 @@
 	WHERE "Module".name = 'Module1'), '2021-04-18 23:59', NULL) RETURNING "Assignment".id
 2021-04-18 23:43:39.665 EDT [3376] ERROR:  relation "Assignments" does not exist at character 15
 2021-04-18 23:43:39.665 EDT [3376] STATEMENT:  select * from "Assignments";
+2021-04-19 01:51:28.520 EDT [1886] LOG:  received fast shutdown request
+2021-04-19 01:51:28.521 EDT [1886] LOG:  aborting any active transactions
+2021-04-19 01:51:28.525 EDT [1886] LOG:  background worker "logical replication launcher" (PID 1895) exited with exit code 1
+2021-04-19 01:51:28.525 EDT [1890] LOG:  shutting down
+2021-04-19 01:51:28.534 EDT [1886] LOG:  database system is shut down
+2021-04-19 01:51:30.224 EDT [5909] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-04-19 01:51:30.226 EDT [5909] LOG:  listening on IPv6 address "::1", port 5432
+2021-04-19 01:51:30.226 EDT [5909] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-04-19 01:51:30.227 EDT [5909] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-04-19 01:51:30.233 EDT [5910] LOG:  database system was shut down at 2021-04-19 01:51:28 EDT
+2021-04-19 01:51:30.242 EDT [5909] LOG:  database system is ready to accept connections
+2021-04-19 19:50:25.905 EDT [3785] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-04-19 19:50:25.908 EDT [3785] LOG:  listening on IPv6 address "::1", port 5432
+2021-04-19 19:50:25.908 EDT [3785] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-04-19 19:50:25.908 EDT [3785] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-04-19 19:50:25.915 EDT [3786] LOG:  database system was interrupted; last known up at 2021-04-19 01:56:30 EDT
+2021-04-19 19:50:25.954 EDT [3786] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-04-19 19:50:25.956 EDT [3786] LOG:  redo starts at 0/16D28B0
+2021-04-19 19:50:25.956 EDT [3786] LOG:  invalid record length at 0/16D2998: wanted 24, got 0
+2021-04-19 19:50:25.956 EDT [3786] LOG:  redo done at 0/16D2960
+2021-04-19 19:50:25.969 EDT [3785] LOG:  database system is ready to accept connections
+2021-04-19 20:53:27.714 EDT [5617] ERROR:  invalid input syntax for type timestamp: "Random Date" at character 184
+2021-04-19 20:53:27.714 EDT [5617] STATEMENT:  INSERT INTO "Assignment" (name, "courseId", description, "moduleId", "dueDate", "fileLoc") VALUES ('Assignment2 With A Module', 3, 'This is an Assignment with a Module displayed', 4, 'Random Date', NULL) RETURNING "Assignment".id
+2021-04-19 21:06:09.799 EDT [3785] LOG:  received fast shutdown request
+2021-04-19 21:06:09.800 EDT [3785] LOG:  aborting any active transactions
+2021-04-19 21:06:09.803 EDT [3785] LOG:  background worker "logical replication launcher" (PID 3792) exited with exit code 1
+2021-04-19 21:06:09.804 EDT [3787] LOG:  shutting down
+2021-04-19 21:06:09.811 EDT [3785] LOG:  database system is shut down
+2021-04-20 20:30:06.773 EDT [2713] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-04-20 20:30:06.776 EDT [2713] LOG:  listening on IPv6 address "::1", port 5432
+2021-04-20 20:30:06.776 EDT [2713] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-04-20 20:30:06.779 EDT [2713] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-04-20 20:30:06.785 EDT [2714] LOG:  database system was shut down at 2021-04-19 21:06:09 EDT
+2021-04-20 20:30:06.796 EDT [2713] LOG:  database system is ready to accept connections
+2021-04-21 00:39:29.882 EDT [2713] LOG:  received fast shutdown request
+2021-04-21 00:39:29.883 EDT [2713] LOG:  aborting any active transactions
+2021-04-21 00:39:29.887 EDT [2713] LOG:  background worker "logical replication launcher" (PID 2720) exited with exit code 1
+2021-04-21 00:39:29.888 EDT [2715] LOG:  shutting down
+2021-04-21 00:39:29.897 EDT [2713] LOG:  database system is shut down
+2021-04-21 19:49:50.965 EDT [13468] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-04-21 19:49:50.968 EDT [13468] LOG:  listening on IPv6 address "::1", port 5432
+2021-04-21 19:49:50.968 EDT [13468] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-04-21 19:49:50.969 EDT [13468] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-04-21 19:49:50.984 EDT [13469] LOG:  database system was shut down at 2021-04-21 00:39:29 EDT
+2021-04-21 19:49:51.004 EDT [13468] LOG:  database system is ready to accept connections
+2021-04-21 20:59:08.045 EDT [16140] ERROR:  invalid input syntax for type integer: "class="btn" at character 231
+2021-04-21 20:59:08.045 EDT [16140] STATEMENT:  SELECT "Module".id AS "Module_id", "Module".name AS "Module_name", "Module"."courseId" AS "Module_courseId", "Module".description AS "Module_description", "Module"."fileLoc" AS "Module_fileLoc" 
+	FROM "Module" 
+	WHERE "Module".id = 'class="btn' 
+	 LIMIT 1
+2021-04-21 21:00:31.519 EDT [16204] ERROR:  invalid input syntax for type integer: "class="btn" at character 231
+2021-04-21 21:00:31.519 EDT [16204] STATEMENT:  SELECT "Module".id AS "Module_id", "Module".name AS "Module_name", "Module"."courseId" AS "Module_courseId", "Module".description AS "Module_description", "Module"."fileLoc" AS "Module_fileLoc" 
+	FROM "Module" 
+	WHERE "Module".id = 'class="btn' 
+	 LIMIT 1
+2021-04-21 21:01:11.814 EDT [16237] ERROR:  invalid input syntax for type integer: "class="btn" at character 231
+2021-04-21 21:01:11.814 EDT [16237] STATEMENT:  SELECT "Module".id AS "Module_id", "Module".name AS "Module_name", "Module"."courseId" AS "Module_courseId", "Module".description AS "Module_description", "Module"."fileLoc" AS "Module_fileLoc" 
+	FROM "Module" 
+	WHERE "Module".id = 'class="btn' 
+	 LIMIT 1
+2021-04-21 21:02:32.977 EDT [16286] ERROR:  invalid input syntax for type integer: "class="btn" at character 231
+2021-04-21 21:02:32.977 EDT [16286] STATEMENT:  SELECT "Module".id AS "Module_id", "Module".name AS "Module_name", "Module"."courseId" AS "Module_courseId", "Module".description AS "Module_description", "Module"."fileLoc" AS "Module_fileLoc" 
+	FROM "Module" 
+	WHERE "Module".id = 'class="btn' 
+	 LIMIT 1
+2021-04-21 23:43:40.330 EDT [21316] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:43:40.330 EDT [21307] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:43:40.330 EDT [21304] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:46:48.290 EDT [21501] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:49:01.589 EDT [21551] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:49:01.589 EDT [21558] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:49:01.589 EDT [21550] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:49:01.590 EDT [21549] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:49:01.590 EDT [21516] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:49:09.444 EDT [21621] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:49:49.155 EDT [21639] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:50:58.250 EDT [21722] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:50:58.250 EDT [21696] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:52:16.080 EDT [21746] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:52:16.081 EDT [21744] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:52:16.081 EDT [21742] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:52:16.081 EDT [21741] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:52:16.081 EDT [21740] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:55:00.873 EDT [21798] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:55:00.874 EDT [21764] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:55:00.874 EDT [21784] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-21 23:55:00.873 EDT [21791] LOG:  unexpected EOF on client connection with an open transaction

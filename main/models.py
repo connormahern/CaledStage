@@ -202,6 +202,7 @@ class Assignment(UserMixin, db.Model):
     #files = db.relationship('File', backref='Assignment', lazy=True)
     dueDate = db.Column(db.String(1000))
     fileLoc = db.Column(db.Integer)
+    points = db.Column(db.Integer)
     
 
     def __repr__(self):
@@ -247,6 +248,7 @@ class File(UserMixin, db.Model):
     fileType = db.Column(db.String(100))
     data = db.Column(db.LargeBinary)
     userId = db.Column(db.Integer)
+    assignmentId = db.Column(db.Integer)
     # assignmentId = db.Column(db.Integer, db.ForeignKey('Assignment.id'))
     # moduleId = db.Column(db.Integer, db.ForeignKey('Module.id'))
 

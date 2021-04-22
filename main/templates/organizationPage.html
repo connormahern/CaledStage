@@ -8,18 +8,23 @@
         <h5 class="card-header mb-3">Organization: {{ orgInfo.name }}</h5>
         <h6 class="card-title">Administrator: {{orgInfo.admin}}</h6>
         <p class="card-text">Users: </p>
-        {% for o in orgInfo.userList %}
-            <li class="card-text">{{o}}</li>
+        {% for o in orgInfo.users %}
+            <p class="card-text">{{ o[0] }}   -   {{ o[1] }}</p>
         {% endfor %}
+        <form action="/organizationUserAddition">
+            <a href="organizationUserAddition.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Add User </button></a> 
+        </form> 
+        <form action="/organizationUserEdit">
+            <a href="organizationUserEdit.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Edit Users </button></a> 
+        </form> 
         
+        <form method = "POST" action = "/organizationPage">
+            <button type="submit" name="deleteOrg" value={{ rerouteName }} class="btn btn-primary"> Delete Organization </button>
+        </form>
+
         </div>
     </div>
-    <form method = "POST" action = "/organizationUserAddition">
-            <button type="submit" name="orgUserAdd" value= {{ organization }} class="btn btn-primary"> Add User </button>
-    </form> 
     
-
-   
 </div>
 
 

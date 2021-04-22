@@ -1,0 +1,103 @@
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Base </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 100%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 10px;
+            margin-bottom: 35px; 
+        }
+        .assignment{
+            max-width: 90%;
+            margin-left: 45px;
+            margin-right: 45px;
+        }
+        a:active{
+            color: #5288fb;
+        }
+        a:hover{
+            color: black;
+        }
+        a:visited{
+            color: #5288fb;
+        }
+        .border-bottom { border-bottom: 1px solid #e5e5e5; }
+    </style>
+</head>
+
+{% block content %}
+{% include 'nav.html' %}
+
+<main>
+    <section class="container rounded box-shadow">
+        <div class="row"> 
+            <div class="col-5"> 
+                <h6 class="display-6 fw-bold text-center" style="margin-top: 50px;"> {{mDict.name}} </h6>
+            </div>
+            <div class="col-6"> 
+                <h5 class="fw-bold text-end" style="margin-top: 60px;"> Course : {{mDict.cName}} </h6>
+            </div>
+        </div>
+        
+        
+        <div class="row mb-2 rounded assignment box-shadow"> 
+            <div class="col-4" >
+                <p class="media-body ">
+                    {{mDict.desc}}
+                </p>
+            </div> 
+            <div class="col-8 ">
+                {% for assign in mDict.aList %}
+                    <div class="row rounded assignment box-shadow">
+                        <p class="media-body pb-3 mb-0 small lh-125">
+                            <strong class="d-block text-gray-dark text-start border-bottom border-gray" style="margin-top: 10px; margin-bottom: 10px;"> {{assign.name}} <b class = "text-end"> Due : {{assign.dueDate}} </b> </strong>
+                            {{assign.description}}
+                        </p>
+                        <div>
+                            <form method="POST" action="/assignments">
+                
+                                <button type="submit" name = 'aId' value = {{assign.id}} class="btn btn-primary"> Assignment Page </button>
+                                    
+                            </form>
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    
+        
+        
+        <div class="row mb-2" style="margin-top: 25px;">
+            {% if mDict.fileName != None %}
+            <div class="col-12 text-end"> 
+                <form method="POST" action="/modulePage">
+            
+                    <button type="submit" style="margin-right: 50px;" name = 'fileDownload' value = {{mDict.fileName}} class="btn btn-info "> Download : {{mDict.fileName}} </button>
+                    
+                </form>
+            </div>
+            {% endif %}
+
+            
+        </div>
+
+        
+    
+    </section>
+</main>
+
+
+{% endblock %}
+</html>
