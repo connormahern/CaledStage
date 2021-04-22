@@ -111,3 +111,23 @@
 2021-04-22 00:27:26.293 EDT [22766] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
 2021-04-22 00:27:26.293 EDT [22766] STATEMENT:  
 	DROP TABLE "Admin"
+2021-04-22 01:04:52.161 EDT [23988] ERROR:  relation "Assignments" does not exist at character 15
+2021-04-22 01:04:52.161 EDT [23988] STATEMENT:  select * from "Assignments"
+	;
+2021-04-22 01:05:00.686 EDT [23988] ERROR:  relation "Assignment" does not exist at character 15
+2021-04-22 01:05:00.686 EDT [23988] STATEMENT:  select * from "Assignment";
+2021-04-22 01:05:54.298 EDT [24025] ERROR:  cannot drop table "Organization" because other objects depend on it
+2021-04-22 01:05:54.298 EDT [24025] DETAIL:  constraint UserOrganizations_organizationId_fkey on table "UserOrganizations" depends on table "Organization"
+2021-04-22 01:05:54.298 EDT [24025] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 01:05:54.298 EDT [24025] STATEMENT:  
+	DROP TABLE "Organization"
+2021-04-22 01:09:15.554 EDT [24120] ERROR:  cannot drop table "Organization" because other objects depend on it
+2021-04-22 01:09:15.554 EDT [24120] DETAIL:  constraint UserOrganizations_organizationId_fkey on table "UserOrganizations" depends on table "Organization"
+2021-04-22 01:09:15.554 EDT [24120] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 01:09:15.554 EDT [24120] STATEMENT:  
+	DROP TABLE "Organization"
+2021-04-22 01:10:30.537 EDT [24194] ERROR:  cannot drop table "Organization" because other objects depend on it
+2021-04-22 01:10:30.537 EDT [24194] DETAIL:  constraint UserOrganizations_organizationId_fkey on table "UserOrganizations" depends on table "Organization"
+2021-04-22 01:10:30.537 EDT [24194] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2021-04-22 01:10:30.537 EDT [24194] STATEMENT:  
+	DROP TABLE "Organization"
