@@ -40,15 +40,14 @@
             margin-bottom: 35px; 
         }
         .innerL-box-shadow{
-            margin-left: 30px;
             box-shadow: .15rem .15rem .35rem grey;
             border: solid rgba(0, 0, 0, .05) 1px;
             margin-bottom: 35px; 
             margin-right: px;
         }
         .innerR-box-shadow{
-            margin-right: 30px;
-            margin-left: 50px;
+            margin-right: 80px;
+            margin-left: 135px;
             box-shadow: .15rem .15rem .35rem grey;
             border: solid rgba(0, 0, 0, .05) 1px;
             margin-bottom: 35px; 
@@ -106,19 +105,20 @@
             </div>
         </div>
 
-        <div class="row mb-2 rowMargin2">
+        <div class="row mb-2" style="margin-left: 120px;">
 
             <div class="col-md-4 rounded innerL-box-shadow">
-                <p> {{courseInfo['courseDescription']}} </p>
+                <p> <strong> {{courseInfo['courseDescription']}} </strong></p>
             </div>
 
-            <div class="col-md-6 rounded innerR-box-shadow">
-                <div class="row mb-2">
-                    <div class="col-md-8" style="margin-top: 20px;">
-                        <h6>Announcements</h6>
-                    </div>
-                    <div class="col-md-4" style="margin-top: 10px;">
-    
+            <div class="col-md-5 rounded innerR-box-shadow">
+                <div class="row mb-1">
+                    <div class="row mb-1">
+                        <div class="col-md-11" style="margin-top: 20px; margin-bottom: 5px; margin-left: 30px;">
+                            <a href=/announcements>
+                                <button type="button" class="btn btn-primary col-12 text-center"> Announcements </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
 

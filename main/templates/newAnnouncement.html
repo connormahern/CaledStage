@@ -56,6 +56,14 @@ html,
             max-height: 500px;
 
         }
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem 2px rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 100%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 10px;
+            margin-bottom: 35px; 
+        }
         
     
     </style>
@@ -63,33 +71,35 @@ html,
 
 {% block content %}
 	{% include 'nav.html' %}
-    <body>
-        <div class="body1">
+    <main>
+        <section class="container-sm rounded box-shadow">
+            <div class="body1">
 
-            <form class = "form-send" method="POST" action="/newAnnouncement">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    <div class="alert alert-danger">
-                        {{ messages[0] }}
+                <form class = "form-send" method="POST" action="/newAnnouncement">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <div class="alert alert-danger">
+                            {{ messages[0] }}
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+                    <div class="form-group text-center">
+                        <h4> <strong> Announcement For : {{courseName}} </strong></h4>
+                        
                     </div>
-                    {% endif %}
-                {% endwith %}
-                <div class="form-group">
-                    <label for="courseName">Course Name :</label>
-                    <input type="courseName" class="form-control" name="courseName" id="courseName" placeholder="C100 (Example Course)">
-                </div>
-                <div class="form-group">
-                    <label for="subjectLine">Announcement Subject :</label>
-                    <input type="subjectLine" class="form-control" name="subjectLine" id="subjectLine" placeholder="i.e. Upcomming Exam">
-                </div>
-                <div class="form-group" type="textA">
-                    <label for="Announcement"> Announcement Details :</label>
-                    <textarea class="form-control" name="Announcement" id="Announcement" rows="5"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
-            </form>
-        </div>
-    </body>
+                    <div class="form-group">
+                        <label for="subjectLine"> <strong>Announcement Subject : </strong></label>
+                        <input type="subjectLine" class="form-control" name="subjectLine" id="subjectLine" placeholder="i.e. Upcomming Exam">
+                    </div>
+                    <div class="form-group" type="textA">
+                        <label for="Announcement"> Announcement Details :</label>
+                        <textarea class="form-control" name="Announcement" id="Announcement" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
 {% endblock %}
 

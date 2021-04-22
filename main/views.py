@@ -252,31 +252,62 @@ def courses_addition_post():
     organizationName = request.form.get('organization')
     description = request.form.get('description')
     instructorId = current.id
-
+     
     new_course = Course(name=course, instructorId=instructorId, description=description, semester=semester, organization=organizationName)
     db.session.add(new_course)
     db.session.commit()
-
+           
 
     return redirect(url_for('views.courses'))
 
-@views.route('/newAnnouncement')
+
+
+@views.route('/announcements')
+def announcement_page():
+
+    classId = session['rerouteName']
+
+    current = User.query.filter(User.email == session['email']).first()
+    course = Course.query.filter(Course.id == session['rerouteName']).first()
+    courseQuery = Course.query.filter(Course.id == int(classId)).first()
+    teacherQuery = User.query.filter(User.id == courseQuery.instructorId).first()
+    courseAnnouncements = Announcement.query.filter(courseQuery.name == Announcement.name)
+
+    courseInfo = {'courseId' : classId, 'courseNumber' : courseQuery.name, 'instructorName' : teacherQuery.name, 'org' : courseQuery.organization, 
+    'courseDescription' : courseQuery.description, 'intstructorEmail' : teacherQuery.email, 'courseName' : course.name}
+
+    announcementList = []
+    for announ in courseAnnouncements :
+        time = str(announ.dateTime)
+        time = time[0:16]
+        currentAnnoun = {'courseName' : announ.name, 'subjectLine' : announ.subject, 'announcement' : announ.description, 'time' : time}
+        announcementList.append(currentAnnoun)
+
+    if current.id == courseQuery.instructorId :
+        return render_template('announcmentInsructor.html', announcementList=announcementList, courseInfo=courseInfo)
+    else : 
+        return render_template('announcments.html', announcementList=announcementList, courseInfo=courseInfo)
+
+@views.route('/newAnnouncement')       
 def new_announcment() :
-    return render_template('newAnnouncement.html')
+           
+    course = Course.query.filter(Course.id == session['rerouteName']).first()
+    courseName = course.name   
+    return render_template('newAnnouncement.html', courseName=courseName)
 
 @views.route('/newAnnouncement', methods=['POST'])
 def new_announcment_post():
 
     current = User.query.filter(User.email == session['email']).first()
-    courseName = request.form.get('courseName')
+    courseName = session['rerouteName']
     subjectLine = request.form.get('subjectLine')
     announcement = request.form.get('Announcement')
     
     try :
-        course = Course.query.filter(Course.name == courseName).first()
+        course = Course.query.filter(Course.id == courseName).first()
 
         if(course.instructorId == current.id):
-            new_announcment = Announcement(name=courseName, description=announcement, subject=subjectLine, courseId=course.id)
+            new_announcment = Announcement(name=course.name, description=announcement, subject=subjectLine, courseId=course.id)
             db.session.add(new_announcment)
             db.session.commit()
         else :

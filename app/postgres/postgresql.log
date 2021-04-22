@@ -170,3 +170,14 @@
 	)
 	
 	
+2021-04-22 02:07:45.710 EDT [25793] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:07:45.710 EDT [25819] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:20:04.916 EDT [26307] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:20:04.916 EDT [26369] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:20:04.916 EDT [26368] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:29:11.067 EDT [26672] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:30:23.660 EDT [26725] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:30:23.660 EDT [26694] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 02:58:15.442 EDT [26814] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 03:00:33.368 EDT [27852] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 03:00:49.430 EDT [27866] LOG:  unexpected EOF on client connection with an open transaction

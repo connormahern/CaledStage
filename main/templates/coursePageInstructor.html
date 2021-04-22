@@ -26,6 +26,7 @@
         }
         .rowMargin2 {
             margin-top: 5px;
+            margin-left: 55px;
         }
         .courseName{
             margin-top: 15px;
@@ -58,6 +59,7 @@
         .announ-box-shadow{
             margin-right: 10px;
             margin-left: 10px;
+            max-width: 80%;
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
             border: solid rgba(0, 0, 0, .05) 1px;
             margin-top: 5px; 
@@ -112,18 +114,22 @@
             </div> 
         </div>
 
-        <div class="row mb-2 rowMargin2">
+        <div class="row mb-2" style="margin-left: 140px;">
 
             <div class="col-md-4 rounded innerL-box-shadow">
-                <p> {{courseInfo['courseDescription']}} </p>
+                <p> <strong> {{courseInfo['courseDescription']}} </strong> </p>
             </div>
 
-            <div class="col-md-6 rounded innerR-box-shadow">
+            
+
+            <div class="col-md-5 rounded innerR-box-shadow">
                 <div class="row mb-2">
-                    <div class="col-md-8" style="margin-top: 20px;">
-                        <h6>Announcements</h6>
+                    <div class="col-5 text-start" style="margin-top: 10px; margin-left: 50px;">
+                        <a href=/announcements>
+                            <button type="button" class="btn btn-primary text-center"> Announcements </button>
+                        </a>
                     </div>
-                    <div class="col-md-4" style="margin-top: 10px;">
+                    <div class="col-5 text-start" style="margin-top: 10px;">
                         <form action="/newAnnouncement">
                             <a href="newAnnouncement.html"> <button type = "newAnnouncement" name = "newAnnouncement" value = {{courseInfo.courseNumber}} class="btn btn-primary" > Make Announcement </button></a> 
                         </form> 
@@ -131,7 +137,7 @@
                 </div>
 
                     {% for announ in courseInfo['announcements'] %}
-                    <div class="row rounded announ-box-shadow">
+                    <div class="row rounded announ-box-shadow" style="margin-left: 55px;">
                         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                             <strong class="d-block text-gray-dark"> {{announ['subjectLine']}}  {{announ['time']}} </strong>
                             {{announ['announcement']}}
