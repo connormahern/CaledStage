@@ -7,8 +7,12 @@
     <title> Caled - Profile </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
+         main {
+            background-color: #5288fb;
+            padding-top: 15px;
+            padding-bottom: 25%;
+        }
 
-html,
         body {
             height: 100%;
         }
@@ -60,9 +64,9 @@ html,
 
 {% block content %}
 	{% include 'nav.html' %}
-    <body>
-        <div class="container rounded box-shadow">
-            <h6 class="display-6 fw-bold text-center" style="margin-top: 50px;"> New Module for {{courseName}} </h6>
+    <main>
+        <div class="container bg-light rounded box-shadow">
+            <h6 class="display-6 fw-bold text-center"> New Module for {{courseName}} </h6>
             <form class = "form-send" method="POST" action="/newModule" enctype="multipart/form-data">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -85,7 +89,7 @@ html,
                 <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
             </form>
         </div>
-    </body>
+    </main>
 
 {% endblock %}
 

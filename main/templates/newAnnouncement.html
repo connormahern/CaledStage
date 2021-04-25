@@ -7,8 +7,11 @@
     <title> Caled - Profile </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
-
-html,
+        main {
+            background-color: #5288fb;
+            padding-top: 15px;
+            padding-bottom: 50px;
+        }
         body {
             height: 100%;
         }
@@ -24,7 +27,6 @@ html,
             align-items: center;
             -webkit-box-pack: center;
             justify-content: center;
-            padding-top: 40px;
             padding-bottom: 40px;
             background-color: #ffffff;
         }
@@ -61,7 +63,6 @@ html,
             box-sizing: content-box;
             width: 100%;
             border: solid rgba(0, 0, 0, .05) 1px;
-            margin-top: 10px;
             margin-bottom: 35px; 
         }
         
@@ -70,36 +71,36 @@ html,
 </head>
 
 {% block content %}
-	{% include 'nav.html' %}
-    <main>
-        <section class="container-sm rounded box-shadow">
-            <div class="body1">
+{% include 'nav.html' %}
+<main>
+    <section class="container-sm rounded box-shadow">
+        <div class="body1">
 
-                <form class = "form-send" method="POST" action="/newAnnouncement">
-                    {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                        <div class="alert alert-danger">
-                            {{ messages[0] }}
-                        </div>
-                        {% endif %}
-                    {% endwith %}
-                    <div class="form-group text-center">
-                        <h4> <strong> Announcement For : {{courseName}} </strong></h4>
-                        
+            <form class = "form-send" method="POST" action="/newAnnouncement">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-danger">
+                        {{ messages[0] }}
                     </div>
-                    <div class="form-group">
-                        <label for="subjectLine"> <strong>Announcement Subject : </strong></label>
-                        <input type="subjectLine" class="form-control" name="subjectLine" id="subjectLine" placeholder="i.e. Upcomming Exam">
-                    </div>
-                    <div class="form-group" type="textA">
-                        <label for="Announcement"> Announcement Details :</label>
-                        <textarea class="form-control" name="Announcement" id="Announcement" rows="5"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
-                </form>
-            </div>
-        </section>
-    </main>
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group text-center">
+                    <h4> <strong> Announcement For : {{courseName}} </strong></h4>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="subjectLine"> <strong>Announcement Subject : </strong></label>
+                    <input type="subjectLine" class="form-control" name="subjectLine" id="subjectLine" placeholder="i.e. Upcomming Exam">
+                </div>
+                <div class="form-group" type="textA">
+                    <label for="Announcement"> Announcement Details :</label>
+                    <textarea class="form-control" name="Announcement" id="Announcement" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
+            </form>
+        </div>
+    </section>
+</main>
 
 {% endblock %}
 

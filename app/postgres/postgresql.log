@@ -181,3 +181,168 @@
 2021-04-22 02:58:15.442 EDT [26814] LOG:  unexpected EOF on client connection with an open transaction
 2021-04-22 03:00:33.368 EDT [27852] LOG:  unexpected EOF on client connection with an open transaction
 2021-04-22 03:00:49.430 EDT [27866] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-22 13:32:31.201 EDT [1962] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-04-22 13:32:31.204 EDT [1962] LOG:  listening on IPv6 address "::1", port 5432
+2021-04-22 13:32:31.204 EDT [1962] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-04-22 13:32:31.205 EDT [1962] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-04-22 13:32:31.210 EDT [1963] LOG:  database system was interrupted; last known up at 2021-04-22 03:04:52 EDT
+2021-04-22 13:32:31.255 EDT [1963] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-04-22 13:32:31.256 EDT [1963] LOG:  redo starts at 0/19C8338
+2021-04-22 13:32:31.256 EDT [1963] LOG:  invalid record length at 0/19C8420: wanted 24, got 0
+2021-04-22 13:32:31.256 EDT [1963] LOG:  redo done at 0/19C83E8
+2021-04-22 13:32:31.270 EDT [1962] LOG:  database system is ready to accept connections
+2021-04-24 21:14:56.324 EDT [1995] LOG:  starting PostgreSQL 13.2 on x86_64-apple-darwin19.6.0, compiled by Apple clang version 11.0.3 (clang-1103.0.32.62), 64-bit
+2021-04-24 21:14:56.330 EDT [1995] LOG:  listening on IPv6 address "::1", port 5432
+2021-04-24 21:14:56.330 EDT [1995] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2021-04-24 21:14:56.331 EDT [1995] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2021-04-24 21:14:56.341 EDT [1996] LOG:  database system was interrupted; last known up at 2021-04-22 13:42:33 EDT
+2021-04-24 21:14:56.401 EDT [1996] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-04-24 21:14:56.403 EDT [1996] LOG:  redo starts at 0/19E17E8
+2021-04-24 21:14:56.403 EDT [1996] LOG:  invalid record length at 0/19E18D0: wanted 24, got 0
+2021-04-24 21:14:56.403 EDT [1996] LOG:  redo done at 0/19E1898
+2021-04-24 21:14:56.417 EDT [1995] LOG:  database system is ready to accept connections
+2021-04-24 22:27:11.840 EDT [4388] WARNING:  terminating connection because of crash of another server process
+2021-04-24 22:27:11.840 EDT [4388] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2021-04-24 22:27:11.840 EDT [4388] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2021-04-24 22:27:11.844 EDT [1995] LOG:  server process (PID 4388) exited with exit code 2
+2021-04-24 22:27:11.844 EDT [1995] DETAIL:  Failed process was running: ROLLBACK
+2021-04-24 22:27:11.844 EDT [1995] LOG:  terminating any other active server processes
+2021-04-24 22:27:11.846 EDT [2000] WARNING:  terminating connection because of crash of another server process
+2021-04-24 22:27:11.846 EDT [2000] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2021-04-24 22:27:11.846 EDT [2000] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2021-04-24 22:27:11.854 EDT [1995] LOG:  all server processes terminated; reinitializing
+2021-04-24 22:27:11.874 EDT [4433] LOG:  database system was interrupted; last known up at 2021-04-24 21:14:56 EDT
+2021-04-24 22:27:11.935 EDT [4433] LOG:  database system was not properly shut down; automatic recovery in progress
+2021-04-24 22:27:11.936 EDT [4433] LOG:  redo starts at 0/19E1948
+2021-04-24 22:27:11.936 EDT [4433] LOG:  invalid record length at 0/19E1980: wanted 24, got 0
+2021-04-24 22:27:11.936 EDT [4433] LOG:  redo done at 0/19E1948
+2021-04-24 22:27:11.947 EDT [1995] LOG:  database system is ready to accept connections
+2021-04-24 22:55:39.964 EDT [5253] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-24 22:56:16.620 EDT [5275] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-24 22:59:51.135 EDT [5299] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-24 23:04:28.679 EDT [5485] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-24 23:04:58.187 EDT [5513] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 00:12:55.374 EDT [7553] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 00:24:39.302 EDT [7610] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 00:24:39.302 EDT [7629] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 00:24:39.302 EDT [7609] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 00:50:06.520 EDT [8579] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 00:52:13.271 EDT [8651] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 00:52:13.272 EDT [8652] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 01:15:49.057 EDT [9054] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 01:22:20.584 EDT [9494] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 01:22:20.584 EDT [9462] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 01:22:20.584 EDT [9461] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 02:38:06.354 EDT [11880] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 02:38:06.354 EDT [11881] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 02:40:03.192 EDT [11914] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 03:10:10.656 EDT [12567] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 03:10:10.656 EDT [12566] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 03:12:26.469 EDT [12634] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 03:12:26.469 EDT [12634] DETAIL:  Key ("assignmentId", "studentId")=(6, 4) already exists.
+2021-04-25 03:12:26.469 EDT [12634] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, '4', NULL, 122)
+2021-04-25 03:14:03.408 EDT [12633] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 04:31:30.086 EDT [13332] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 04:35:39.312 EDT [14440] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 04:35:39.312 EDT [14431] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 04:35:39.312 EDT [14429] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 05:17:50.505 EDT [14704] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 05:17:50.507 EDT [14675] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 05:17:50.507 EDT [14696] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 05:17:50.508 EDT [14676] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 05:17:50.508 EDT [14697] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 05:17:50.508 EDT [14695] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 14:14:34.058 EDT [17407] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 14:14:34.058 EDT [17318] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 14:14:34.058 EDT [17317] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 14:14:34.063 EDT [16801] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:05:48.053 EDT [18947] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:05:48.053 EDT [18947] DETAIL:  Key ("assignmentId", "studentId")=(6, 3) already exists.
+2021-04-25 15:05:48.053 EDT [18947] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 3, NULL, 122)
+2021-04-25 15:06:59.028 EDT [18944] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:07:04.295 EDT [18978] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:07:04.295 EDT [18978] DETAIL:  Key ("assignmentId", "studentId")=(6, 3) already exists.
+2021-04-25 15:07:04.295 EDT [18978] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 3, NULL, 122)
+2021-04-25 15:07:49.077 EDT [18977] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:07:51.291 EDT [19007] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:07:51.291 EDT [19007] DETAIL:  Key ("assignmentId", "studentId")=(6, 3) already exists.
+2021-04-25 15:07:51.291 EDT [19007] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 3, NULL, 122)
+2021-04-25 15:08:16.697 EDT [19028] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:08:16.697 EDT [19028] DETAIL:  Key ("assignmentId", "studentId")=(6, 2) already exists.
+2021-04-25 15:08:16.697 EDT [19028] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 2, NULL, 100)
+2021-04-25 15:08:41.267 EDT [19027] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:08:41.267 EDT [19006] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:08:43.377 EDT [19062] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:08:43.377 EDT [19062] DETAIL:  Key ("assignmentId", "studentId")=(6, 2) already exists.
+2021-04-25 15:08:43.377 EDT [19062] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 2, NULL, 100)
+2021-04-25 15:09:11.728 EDT [19061] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:09:13.677 EDT [19089] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:09:13.677 EDT [19089] DETAIL:  Key ("assignmentId", "studentId")=(6, 2) already exists.
+2021-04-25 15:09:13.677 EDT [19089] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 2, NULL, 100)
+2021-04-25 15:09:13.685 EDT [19090] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:09:13.685 EDT [19090] DETAIL:  Key ("assignmentId", "studentId")=(6, 2) already exists.
+2021-04-25 15:09:13.685 EDT [19090] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 2, NULL, 100)
+2021-04-25 15:10:18.258 EDT [19088] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:10:18.258 EDT [19087] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:10:21.587 EDT [19135] ERROR:  duplicate key value violates unique constraint "AssignmentGrades_pkey"
+2021-04-25 15:10:21.587 EDT [19135] DETAIL:  Key ("assignmentId", "studentId")=(6, 2) already exists.
+2021-04-25 15:10:21.587 EDT [19135] STATEMENT:  INSERT INTO "AssignmentGrades" ("assignmentId", "studentId", "fileLoc", grade) VALUES (6, 2, NULL, 100)
+2021-04-25 15:12:29.692 EDT [19134] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 15:29:14.773 EDT [19493] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 16:14:46.469 EDT [21008] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 16:15:00.402 EDT [21013] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 16:30:23.006 EDT [21036] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 16:50:51.384 EDT [22036] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 16:50:51.384 EDT [21744] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:22:51.253 EDT [23099] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:23:27.946 EDT [23136] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:23:27.946 EDT [23135] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:23:27.946 EDT [23132] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:31:42.928 EDT [23411] ERROR:  duplicate key value violates unique constraint "StudentCourses_pkey"
+2021-04-25 17:31:42.928 EDT [23411] DETAIL:  Key ("courseId", "studentId")=(1, 4) already exists.
+2021-04-25 17:31:42.928 EDT [23411] STATEMENT:  INSERT INTO "StudentCourses" ("courseId", "studentId", grade) VALUES (1, 4, NULL)
+2021-04-25 17:42:18.866 EDT [23176] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:42:18.865 EDT [23459] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:42:18.868 EDT [23497] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:42:18.868 EDT [23509] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:46:06.689 EDT [23666] ERROR:  duplicate key value violates unique constraint "StudentCourses_pkey"
+2021-04-25 17:46:06.689 EDT [23666] DETAIL:  Key ("courseId", "studentId")=(1, 2) already exists.
+2021-04-25 17:46:06.689 EDT [23666] STATEMENT:  INSERT INTO "StudentCourses" ("courseId", "studentId", grade) VALUES (1, 2, NULL)
+2021-04-25 17:50:30.006 EDT [23665] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:55:59.111 EDT [23805] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 17:55:59.111 EDT [23802] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:16:50.275 EDT [24420] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.690 EDT [24507] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.691 EDT [24503] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.691 EDT [24496] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.691 EDT [24495] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.691 EDT [24477] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.690 EDT [24505] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.692 EDT [24476] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:21.690 EDT [24504] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:54.042 EDT [24592] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:19:54.042 EDT [24591] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.826 EDT [24625] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.827 EDT [24604] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.827 EDT [24603] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.827 EDT [24614] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.827 EDT [24605] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.826 EDT [24617] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.827 EDT [24612] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.826 EDT [24616] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:20:35.826 EDT [24615] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:22:35.908 EDT [24631] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:51:22.213 EDT [25613] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:51:22.213 EDT [25585] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:51:22.213 EDT [25612] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 18:58:57.292 EDT [25857] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:01:05.709 EDT [25943] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:03:18.067 EDT [26068] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:03:18.067 EDT [26053] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:03:18.067 EDT [26051] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:04:55.022 EDT [26090] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:04:55.022 EDT [26115] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:05:51.331 EDT [26173] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:05:51.331 EDT [26153] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:05:51.331 EDT [26150] LOG:  unexpected EOF on client connection with an open transaction
+2021-04-25 19:05:51.331 EDT [26152] LOG:  unexpected EOF on client connection with an open transaction

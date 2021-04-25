@@ -7,8 +7,12 @@
     <title> Caled - Profile </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
+         main {
+            background-color: #5288fb;
+            padding-top: 5%;
+            padding-bottom: 50%;
+        }
 
-html,
         body {
             height: 100%;
         }
@@ -63,7 +67,9 @@ html,
 
 {% block content %}
 	{% include 'nav.html' %}
-    <body>
+<main>
+    <section class="container-sm bg-light rounded box-shadow"> 
+
         {% with messages = get_flashed_messages() %}
                     {% if messages %}
                     <div class="alert alert-danger">
@@ -71,22 +77,36 @@ html,
                     </div>
                     {% endif %}
         {% endwith %}
-        <div class="body1">
+        <div class="row">
             
-            <form class = "form-send" method="POST" action="/courseStudentAddition">
-                <div class="form-group">
-                    <label for="CourseName"> Course Name : {{ courseName }}</label>
+            
+                <div class="col-12 text-center" style="margin-top: 20px;">
+                    <h2> Add Student : {{ courseName }}</h2>
                 </div>
-                <div class="form-group" type="textA">
-                    <label for="studentEmail"> Student Email :</label>
-                    <input type="studentEmail" class="form-control" name="studentEmail" id="studentEmail" placeholder="student@org.edu" ></input>
+                <div class="row"> 
+                    <div class="col-7 form-group" style="margin-left: 200px;"type="textA">
+                        <form class = "form-send" method="POST" action="/courseStudentAddition">
+                            <label for="studentEmail"> Student Email :</label>
+                        <input type="studentEmail" class="form-control" name="studentEmail" id="studentEmail" placeholder="student@org.edu" ></input>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
+                        </div>
+                        
+                        </form>
+                        
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
-            </form>
+                
+                
         </div>
-    </body>
 
+    </section>
+
+
+
+</main>
 {% endblock %}
+
 
 
 </html> 

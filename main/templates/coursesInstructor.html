@@ -1,0 +1,186 @@
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Base </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+         main {
+            background-color: #5288fb;
+            padding-top: 2%;
+            padding-bottom: 50%;
+        }
+
+        .customButton1 {
+            width: 150px;
+        }
+        .customButton2 {
+            width: 200px;
+        }
+        .customButton3 {
+            width: 150px;
+        }
+        .rowMargin1 {
+            margin-top: 35px;
+            margin-left: 150px; 
+            margin-bottom: 35px; 
+        }
+        .rowMargin2 {
+            margin-top: 5px;
+            margin-left: 55px;
+            margin-bottom: 25px;
+        }
+        .courseName{
+            margin-top: 15px;
+            margin-bottom: 35px; 
+        }
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 90%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+        .container-box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 80%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+        .innerL-box-shadow{
+            margin-left: 30px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            margin-right: px;
+        }
+        .innerR-box-shadow{
+            margin-right: 30px;
+            margin-left: 50px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+
+        .announ-box-shadow{
+            margin-right: 10px;
+            margin-left: 10px;
+            max-width: 80%;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+            
+        }
+
+        .module-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: .15rem .15rem .25rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+        .asssignment-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+        a:active{
+            color: #5288fb;
+        }
+        a:hover{
+            color: black;
+        }
+        a:visited{
+            color: #5288fb;
+        }
+
+    </style>
+
+</head>
+
+{% block content %}
+{% include 'nav.html' %}
+<main>
+    <section class="container-sm bg-light rounded container-box-shadow">
+        <div class="row">
+            <div class="col-12">
+                <h6 class="display-6 fw-bold text-center border-bottom border-gray" style="margin-top: 25px;"> Courses </h6>
+            </div>
+        </div>
+
+        {% for c in course %}
+        <div class="row rounded box-shadow text-start" style="margin-left: 50px;">
+            <div class="col-12 border-bottom border-gray" style="margin-top: 10px;">
+                <h5>{{ c.name }}</h5>
+            </div>
+            
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-1"> 
+
+                </div>
+                <div class="col-5 text-start"> 
+                    <h6 class="card-title">Instructor {{c.teacherId}}</h6>
+                </div>
+                <div class="col-6 text-center"> 
+                    <p> Enrolled Students : {% for name in c.enrolledId %} {{name}}, {% endfor %}</p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="row"> 
+                    <div class="col-1 text-start">
+
+                    </div>
+                    <div class="col-5 text-start border-bottom border-gray" style="margin-bottom: 10px; width: 40%">
+                        <h6> Description : </h6>
+                    </div>
+                    <div class="col-6 text-start">
+                        
+                    </div>
+                    
+                </div>
+                <div class="row"> 
+                    <div class="col-1 text-start"> 
+
+                    </div>
+                    <div class="col-5 text-start"> 
+                        <h6 class="card-title">{{c.desc}}</h6>
+                    </div>
+                    <div class="col-6 text-center"> 
+                        
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-end"> 
+                    <form method = "post" action = "/courses">
+                        <button type="submit" name="courseReroute" value= {{ c.id }} class="btn btn-primary"> See Details </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+
+
+
+        
+
+
+    </section>
+</main>
+{% endblock %}
+ 

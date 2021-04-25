@@ -7,6 +7,27 @@
     <title> Caled - Profile </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
+
+		main {
+            background-color: #5288fb;
+            padding-top: 100px;
+            padding-bottom: 50%;
+        }
+
+		.container-box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 80%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+		.box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 100%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
     
     </style>
 </head>
@@ -14,34 +35,49 @@
 
 	{% block content %}
 	{% include 'nav.html' %}
-	<body class="bg-light">
-		
-		<main role="main" class="container">
-			<div class="my-3 p-3 bg-white rounded box-shadow">
-				<h6 class="border-bottom border-gray pb-2 mb-0">Profile</h6>
-				<div class="card-deck" style="padding-top: 10px;">
-					<div class="card bg-light mb-3">
-						<div class="card-body">
-						<h5 class="card-header mb-3">{{current['name']}}</h5>
-						<p class="card-text">Email: {{current['email']}}</p>
-						<p class="card-text">User Type : {{current['userType']}}</p>
-						<p class="card-text">Organizations :</p> 
-						{% for o in organizationNames %}
-							<p class="card-text">{{o}}</p>
-						{% endfor %}
-						{% if current.userType == 'Admin' %}
-							<form action="/organizations">
-								<a href="organizations.html"><button type="submit" name="organizations" class="btn btn-primary custom"> View Organizations </button></a> 
-							</form> 
-						{% endif %}	
-						</div>
-					</div>
-				</div>
+<main> 
+	<section class="container-sm bg-light rounded container-box-shadow">
+		<div class = "row text-center" style="margin-top: 50px;">
+			<div calss="col-12 text-center">
+				<h3 class="border-bottom border-gray"> <strong> Profile </strong> </h3>
 			</div>
-		</main>
-		
-		
-	</body>
+			<div class="row">
+				<div class="col-2 text-start"> </div>
+				<div class="col-6 text-start" style="font-size: 20px;"> Name : {{current['name']}} </div>
+				<div class="col-3 text-start" style="font-size: 20px;"> Email: {{current['email']}} </div>
+			</div>
+			<div class="row">
+				<div class="col-2 text-start"> </div>
+				<div class="col-6 text-start" style="font-size: 20px;"> User Type : {{current['userType']}} </div>	
+			</div>
+			<div class="row">
+				<div class="col-2 text-start"> </div>
+				<div class="col-6 text-start" style="font-size: 20px;"> Organizations : </div>	
+			</div>
+			
+			<div class="row">
+				<div class="col-2 text-start"> </div>
+				{% for o in organizationNames %}
+				<div class="col-4 text-start" style="font-size: 20px;"> {{o}} </div>
+				{% endfor %}	
+			</div>	
+			<div class="row">
+				<div class="col-6 text-start"> </div>
+				{% if current.userType == 'Admin' %}
+				<div class="col-6 text-start" style="font-size: 20px;"> 
+					<form action="/organizations">
+						<a href="organizations.html"><button type="submit" name="organizations" class="btn btn-primary custom"> View Organizations </button></a> 
+					</form> 
+				</div>
+				{% endif %}		
+			</div>
+						
+
+
+			
+		</div>
+	</section>
+</main>
 	{% endblock %}
 
 </html>

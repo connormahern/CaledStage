@@ -1,0 +1,198 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Base </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+        main {
+            background-color: #5288fb;
+            padding-top: 3%;
+            padding-bottom: 50%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 90%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 10px; 
+        }
+        .container-box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 80%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+
+        .body1 {
+            height: 80%;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -ms-flex-align: center;
+            -ms-flex-pack: center;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+        }
+        
+        .form-send {
+            width: 100%;
+            padding: 15px;
+            margin: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .form-send .checkbox {
+            font-weight: 400;
+        }
+        .form-send .form-group{
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .form-send .form-control:focus {
+            z-index: 2;
+        }
+        .form-group select[type="textA"]{
+            max-height: 500px;
+
+        }
+        
+    </style>
+</head>
+
+
+
+
+{% block content %}
+{% include 'nav.html' %}
+<main>
+    <section class="container-sm bg-light rounded container-box-shadow"> 
+        <div class="card-deck" style="margin-top: 10px;">
+            <h1>Results</h1>
+            {% if userType == 'Student' or userType == 'Instructor' %}
+            {% if profiles['name']|length > 0 %}
+            <div class="card bg-light box-shadow mb-3">
+                <h3 class="card-header mb-3">Users</h3>
+                    {% for item in range(profiles['name'] | length) %}
+                        <div class="card-body box-shadow">   
+                        <h5 class="card-header mb-3">{{ profiles['name'][item] }}</h5>
+                        <p>{{ profiles['email'][item] }}</p>
+                        <form method = "POST" action = "/userProfile">
+                            <button type="submit" name="profile" value="{{profiles['id'][item]}}" class="btn btn-primary"> See Details </button>
+                        </form>
+                        </div>
+                    {% endfor %}    
+            </div>
+            {% endif %}
+            {% if courses['name']|length > 0 %}
+            <div class="card bg-light box-shadow mb-3">
+            <h3 class="card-header mb-1">Courses</h3>
+                {% for item in range(courses['name'] | length) %}
+                    
+                    <div class="card-body box-shadow">   
+                    <h5 class="card-header mb-3">{{ courses['name'][item] }}</h5>
+                    <form method = "POST" action = "/courses">
+                        <button type="submit" name="courseReroute" value="{{courses['id'][item]}}" class="btn btn-primary"> See Details </button>
+                    </form>
+                    </div>
+                {% endfor %}  
+            </div>
+            {% endif %}
+            {% if messages['name']|length > 0 %}
+            <div class="card bg-light box-shadow mb-3">
+                <h3 class="card-header mb-3">Messages</h3>
+                    {% for item in range(messages['name'] | length) %}
+                        <div class="card-body box-shadow">   
+                        <h5 class="card-header mb-3">{{ messages['name'][item] }}</h5>
+                        <p>{{ messages['email'][item] }}</p>
+                        <p>{{ messages['message'][item]}}</p>
+                        <a href=messages>
+                            <button type="button" name="messages" class="btn btn-primary"> See Details </button>
+                        </a>
+                        </div>
+                    {% endfor %}    
+            </div>
+            {% endif %}
+            {% if assignments['name']|length > 0 %}
+            <div class="card bg-light box-shadow mb-3">
+                <h3 class="card-header mb-3">Assignments</h3>
+                    {% for item in range(assignments['name'] | length) %}
+                        <div class="card-body box-shadow">   
+                        <h5 class="card-header mb-3">{{ assignments['name'][item] }}</h5>
+                        <h6 class="card-body mb-3">{{ assignments['points'][item] }}</h6>
+                        <p>{{ assignments['description'][item] }}</p>
+                        <a href=/assignments>
+                            <button type="button" class="btn btn-primary"> See Details </button>
+                        </a>
+                        </div>
+                    {% endfor %}    
+            </div>
+            {% endif %}
+            {% if modules['name']|length > 0 %}
+            <div class="card bg-light box-shadow mb-3">
+                <h3 class="card-header mb-3">Modules</h3>
+                    {% for item in range(modules['name'] | length) %}
+                        <div class="card-body box-shadow">   
+                        <h5 class="card-header mb-3">{{ modules['name'][item] }}</h5>
+                        <p>{{ modules['course'][item] }}</p>
+                        <a href=/modules>
+                            <button type="button" class="btn btn-primary"> See Details </button>
+                        </a>
+                        </div>
+                    {% endfor %}    
+            </div>
+            {% endif %}
+            {% endif %}
+            {% if userType == 'Admin' %}
+            {% if profiles['name']|length > 0 %}
+            <div class="card bg-light box-shadow mb-3">
+                <h3 class="card-header mb-3">Users</h3>
+                    {% for item in range(profiles['name'] | length) %}
+                        <div class="card-body box-shadow">   
+                        <h5 class="card-header mb-3">{{ profiles['name'][item] }}</h5>
+                        <p>{{ profiles['email'][item] }}</p>
+                        <form method = "POST" action = "/userProfile">
+                            <button type="submit" name="profile" value="{{profiles['id'][item]}}" class="btn btn-primary"> See Details </button>
+                        </form>
+                        </div>
+                    {% endfor %}    
+            </div>
+            {% endif %}
+            <div class="card bg-light box-shadow mb-3">
+                <h3 class="card-header mb-3">Organizations</h3>
+                    {% for item in range(organizations['name'] | length) %}
+                        <div class="card-body box-shadow">   
+                        <h5 class="card-header mb-3">{{ organizations['name'][item] }}</h5>
+                            <a href=organizations>
+                                <button type="button" class="btn btn-primary text-center"> See Details </button>
+                            </a>
+                        </div>
+                    {% endfor %}    
+            </div>
+        
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}
+</main>
+</html>

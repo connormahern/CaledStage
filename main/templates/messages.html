@@ -9,143 +9,204 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <style>
-        html,
+        main {
+            background-color: #5288fb;
+            padding-top: 3%;
+            padding-bottom: 50%;
+        }
+
         body {
-        overflow-x: hidden; /* Prevent scroll on narrow devices */
+            height: 100%;
         }
 
-        @media (max-width: 767.98px) {
-        .offcanvas-collapse {
-            position: fixed;
-            top: 56px; /* Height of navbar */
-            bottom: 0;
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 90%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 10px; 
+        }
+        .container-box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 80%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+
+        .body1 {
+            height: 80%;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -ms-flex-align: center;
+            -ms-flex-pack: center;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+        }
+        
+        .form-send {
             width: 100%;
-            padding-right: 1rem;
-            padding-left: 1rem;
-            overflow-y: auto;
-            background-color: var(--gray-dark);
-            transition: -webkit-transform .3s ease-in-out;
-            transition: transform .3s ease-in-out;
-            transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
-            -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+            padding: 15px;
+            margin: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
-        .offcanvas-collapse.open {
-            -webkit-transform: translateX(-1rem);
-            transform: translateX(-1rem); /* Account for horizontal padding on navbar */
+        .form-send .checkbox {
+            font-weight: 400;
         }
+        .form-send .form-group{
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
         }
-
-        .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
+        .form-send .form-control:focus {
+            z-index: 2;
         }
+        .form-group select[type="textA"]{
+            max-height: 500px;
 
-        .nav-scroller .nav {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        overflow-x: auto;
-        color: rgba(255, 255, 255, .75);
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
         }
-
-        .nav-underline .nav-link {
-        padding-top: .75rem;
-        padding-bottom: .75rem;
-        font-size: .875rem;
-        color: var(--secondary);
-        }
-
-        .nav-underline .nav-link:hover {
-        color: var(--blue);
-        }
-
-        .nav-underline .active {
-        font-weight: 500;
-        color: var(--gray-dark);
-        }
-
-        .text-white-50 { color: rgba(255, 255, 255, .5); }
-
-        .bg-purple { background-color: var(--purple); }
-
-        .border-bottom { border-bottom: 1px solid #e5e5e5; }
-
-        .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-        .lh-100 { line-height: 1; }
-        .lh-125 { line-height: 1.25; }
-        .lh-150 { line-height: 1.5; }
+        
     </style>
 </head>
 
 {% block content %}
 {% include 'nav.html' %}
-<body class="bg-light">
 
-    <div>
-        <a href=sendMessage>
-            <button type="button" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 5px; margin-right: 100px; position:absolute; right: 0;" > Send Message </button>
-        </a>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h3 class="one" style="visibility:collapse; ">Text</h3>
-            
+<main>
+    <section class="container-sm bg-light rounded container-box-shadow">
+
+        <div class="row mb-2">
+            <div class="col-1" > 
+            </div>
+            <div class="col-5 text-start" style="margin-top: 13px; margin-right: 10px;">
+                <h2> <strong> Messages </strong></h2>
+            </div> 
+            <div class="col-5 text-end">
+                <a href=sendMessage>
+                    <button type="button" class="btn btn-primary" style="margin-top: 10px;" > Send Message </button>
+                </a>
+            </div> 
         </div>
-    </div>
-    
-    <main role="main" class="container">
-        
-        
-        <div class="my-3 p-3 bg-light rounded box-shadow">
-            <h6 class="border-bottom border-gray pb-2 mb-0"> Messages</h6>
-                {% for m in message %}
-                    {% if not m.isRead and email in m.recipient %}
-                    <div class="media text-muted pt-3 my-3 p-3 bg-white rounded box-shadow">
-                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <strong class="d-block text-gray-dark"> Sent From : {{m.name}} <p style="text-align: right; padding: 10px;">  {{m.date}} </p> </strong>
-                            {{m.messageText}}
-                        </p>
-                        <form>
-                            <a href=sendMessage>
-                                <button type="button" class="btn btn-primary float-right"> Reply </button>
-                            </a>
-                        </form>
 
-                    </div>
-                    {% endif %}
-                {% endfor %}
+        <div class="row" style="margin-left: 10px;"> 
+            <div class="col-12 text-center" > 
+                <h4> <strong> New Messages </strong></h4>
 
+            </div>
+
+            <div class="row" style="max-width: 80%;">
                 
-        </div>
-    </main>
 
-    <main role="main" class="container">
-        <div class="my-3 p-3 bg-light rounded box-shadow">
-            <h6 class="border-bottom border-gray pb-2 mb-0"> Sent Messages</h6>
+                {% for m in message %}
+                {% if not m.isRead and email in m.recipient %}
+                <div class="row rounded box-shadow" style="margin-left: 150px; margin-top: 15px;">
+                
+                    <div class="col-12 border-bottom border-gray">
+                        <div class="row mb-2" style="margin-top: 10px;">
+
+                            <div class="col-6 text-start">
+                                <h6> <strong> Sent From : {{m.name}} </strong></h6>
+                            </div>
+        
+                            <div class="col-6 text-end">
+                                {{m.date}}
+                            </div>
+    
+                        </div>
+
+                    </div>    
+                   
+                    <div class="row mb-1" style="margin-top: 10px;">
+                        <div class="col-12">
+                            {{m.messageText}}
+                        </div>
+    
+                    </div>
+                    <div class="row mb-1" style="margin-top: 10px;">
+                        <div class="col-12 text-end">
+                            <form>
+                                <a href=sendMessage>
+                                    <button type="button" class="btn btn-primary float-right"> Reply </button>
+                                </a>
+                            </form>
+                        </div>
+    
+                    </div>
+                    
+                    
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 25px; margin-left: 10px;"> 
+            <div class="col-12 text-center" > 
+                <h4> <strong> Sent Messages </strong></h4>
+
+            </div>
+
+            <div class="row" style="max-width: 80%; margin-top: 5px;">
+                
+
                 {% for s in sent %}
                     {% if email == s.sender %}
-                    <div class="media text-muted pt-3 my-3 p-3 bg-white rounded box-shadow">
-                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <strong class="d-block text-gray-dark"> Sent To : {{s.name}} <p style="text-align: right; padding: 10px;">  {{s.date}} </p> </strong>
-                            {{s.messageText}}
-                        </p>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-        </div>
-    </main>
+                <div class="row rounded box-shadow" style="margin-left: 150px; margin-top: 15px;">
+                
+                    <div class="col-12 border-bottom border-gray">
+                        <div class="row mb-2" style="margin-top: 10px;">
 
-</body>
+                            <div class="col-6 text-start">
+                                <h6> <strong> Sent To : {{s.name}} </strong></h6>
+                            </div>
+        
+                            <div class="col-6 text-end">
+                                {{s.date}}
+                            </div>
+    
+                        </div>
+
+                    </div>    
+                   
+                    <div class="row mb-1" style="margin-top: 10px;">
+                        <div class="col-12">
+                            {{s.messageText}}
+                        </div>
+    
+                    </div>
+                    <div class="row mb-1" style="margin-top: 10px;">
+                        <div class="col-12 text-end">
+                            <form>
+                                <a href=sendMessage>
+                                    <button type="button" class="btn btn-primary float-right"> Reply </button>
+                                </a>
+                            </form>
+                        </div>
+    
+                    </div>
+                    
+                    
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+</main>
 {% endblock %}
 </html>

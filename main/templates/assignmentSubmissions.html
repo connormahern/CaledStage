@@ -1,0 +1,118 @@
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Base </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+         main {
+            background-color: #5288fb;
+            padding-top: 15px;
+            padding-bottom: 50%;
+        }
+
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 100%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 10px;
+            margin-bottom: 35px; 
+        }
+        .assignment{
+            max-width: 90%;
+            margin-left: 45px;
+            margin-right: 45px;
+        }
+        a:active{
+            color: #5288fb;
+        }
+        a:hover{
+            color: black;
+        }
+        a:visited{
+            color: #5288fb;
+        }
+        .border-bottom { border-bottom: 1px solid #e5e5e5; }
+    </style>
+</head>
+
+{% block content %}
+{% include 'nav.html' %}
+
+<main>
+    <section class="container bg-light rounded box-shadow">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger">
+                {{ messages[0] }}
+            </div>
+            {% endif %}
+        {% endwith %}    
+        <div class="row"> 
+            <div class="col-5"> 
+                <h6 class="display-6 fw-bold text-center" style="margin-top: 50px;"> {{aDict.name}} </h6>
+            </div>
+            <div class="col-6"> 
+                <h5 class="fw-bold text-end" style="margin-top: 60px;"> Course : {{aDict.cName}} </h6>
+            </div>
+        </div>
+
+        <div class="row"> 
+            <div class="col-5"> 
+                <strong class="d-block text-gray-dark text-start " style="margin-top: 10px; margin-left: 130px;"> Due : {{aDict.dueDate}} </strong>
+            </div>
+            <div class="col-6"> 
+                <strong class="d-block text-gray-dark text-end" style="margin-top: 9px;"> Points : {{aDict.points}} </strong>
+            </div>
+        </div>
+        {% for s in submissionList %}
+        <div class="row" style="margin-top: 10px;">
+            
+            <div class="col-3"> 
+                <strong style="margin-top: 10px; margin-left: 130px;"> {{s.studentName}} </strong>
+            </div>
+            <div class="col-4 text-start"> 
+                <form method="POST" action="/assignmentSubmissions">
+            
+                    <button type="submit" name = 'submissionDownload' value = {{s.fileId}} class="btn btn-primary"> Download : {{s.fileName}} </button>
+                    
+                </form>
+            </div>
+            
+            
+            <div class="col-5"> 
+                <div class="row mb-2" style="margin-left: 125px;">
+                    <form method="POST" action="/assignmentGrade">
+                        <div class="row mb-2">
+                            <div class="col-4 text-end">
+                                <stong> Grade : {{s.grade}} </stong> 
+                            </div>
+                            <div class="col-5 text-start">         
+                                <input type="assignmentGrade" class="form-control" name="assignmentGrade" id="assignmentGrade" placeholder="Input Grade">
+                            </div>
+                            <div class="col-3 text-end"> 
+                                <button type="submit" name = 'gradeSubmit' value = "{{s['sId']}}" class="btn btn-primary"> Submit </button>
+                            </div>
+
+                        </div> 
+                    
+                    </form>
+                </div>
+            </div>
+
+            
+        </div>
+        {% endfor %}
+        
+    </section>
+</main>
+
+
+{% endblock %}
+</html>
