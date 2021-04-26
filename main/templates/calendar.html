@@ -88,73 +88,93 @@
 <main>
     <section class="container-sm bg-light rounded container-box-shadow">
 
-        <div class="row mb-2 text-center">
-            <div class="col-12" style="margin-top: 13px; margin-right: 10px;">
+        <div class="row mb-2">
+            <div class="col-12 text-center" style="margin-top: 13px; margin-right: 10px;">
                 <h2> <strong> Calender </strong></h2>
-                {{announDict}}
-                {{assDict}}
-
                 {% for date in weeksTime %}
-                    <p> {{date.strftime("%B %d, %Y")}} </p>
-                    <p> {{date}} </p>
-                    {% for d in weeksTime.date %}
-                        <p> {{d.courseName}} , {{d.subjectLine}}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div> 
-        </div>
 
-        <div class="row" style="margin-left: 10px;"> 
-            <div class="col-12 text-center" > 
-                <h4> <strong> New Messages </strong></h4>
+                <div class="row rounded box-shadow" style="margin-left: 55px; margin-top: 10px; margin-bottom: 5px;"> 
+                    <div class="col-12 text-center" style="margin-top: 10px;"> 
+                        <h4> <strong> {{date['d'].strftime("%B %d, %Y")}} </strong></h4>
+                    </div>
 
-            </div>
-
-            <div class="row" style="max-width: 80%;">
-                
-
-                {% for m in message %}
-                {% if not m.isRead and email in m.recipient %}
-                <div class="row rounded box-shadow" style="margin-left: 150px; margin-top: 15px;">
-                
-                    <div class="col-12 border-bottom border-gray">
-                        <div class="row mb-2" style="margin-top: 10px;">
-
-                            <div class="col-6 text-start">
-                                <h6> <strong> Sent From : {{m.name}} </strong></h6>
+                    {% for d in date['anList'] %}
+                    <div class="row rounded box-shadow" style="margin-left: 35px; margin-top: 10px">
+                        <div class="col-12 border-bottom border-gray">
+                            <div class="row mb-2" style="margin-top: 10px;">
+    
+                                <div class="col-6 text-start">
+                                    <h6> <strong> {{d.subjectLine}} </strong></h6>
+                                </div>
+            
+                                <div class="col-6 text-end">
+                                    {{d.courseName}}
+                                </div>
+        
+                            </div>
+    
+                        </div>    
+                       
+                        <div class="row mb-1" style="margin-top: 10px;">
+                            <div class="col-12 text-start">
+                                {{d.announcement}}
                             </div>
         
-                            <div class="col-6 text-end">
-                                {{m.date}}
+                        </div>
+                        <div class="row mb-1" style="margin-top: 10px;">
+                            <div class="col-12 text-end">
+                                <form>
+                                    <a href=/announcements>
+                                        <button type="button" class="btn btn-primary text-center"> Announcements </button>
+                                    </a>
+                                </form>
                             </div>
-    
+        
                         </div>
 
-                    </div>    
-                   
-                    <div class="row mb-1" style="margin-top: 10px;">
-                        <div class="col-12">
-                            {{m.messageText}}
-                        </div>
-    
                     </div>
-                    <div class="row mb-1" style="margin-top: 10px;">
-                        <div class="col-12 text-end">
-                            <form>
-                                <a href=sendMessage>
-                                    <button type="button" class="btn btn-primary float-right"> Reply </button>
-                                </a>
-                            </form>
-                        </div>
+                    {% endfor %}
+
+                    {% for ass in date['asList'] %}
+                    <div class="row rounded box-shadow" style="margin-left: 35px; margin-top: 10px">
+                        <div class="col-12 border-bottom border-gray">
+                            <div class="row mb-2" style="margin-top: 10px;">
     
+                                <div class="col-6 text-start">
+                                    <h6> <strong> {{ass.name}} </strong></h6>
+                                </div>
+            
+                                <div class="col-6 text-end">
+                                    {{ass.dueDate}}
+                                </div>
+        
+                            </div>
+    
+                        </div>    
+                       
+                        <div class="row mb-1" style="margin-top: 10px;">
+                            <div class="col-12 text-start">
+                                {{ass.desc}}
+                            </div>
+        
+                        </div>
+                        <div class="row mb-1" style="margin-top: 10px;">
+                            <div class="col-12 text-end">
+                            
+                                <form method="POST" action="/assignments">
+            
+                                    <button class="btn btn-primary col-3" style="margin-top: 5px;" type="submit" name = 'aId' value = {{ass.id}} > Visit Assingment Page </button>
+                                        
+                                </form>
+                            </div>
+        
+                        </div>
+
                     </div>
-                    
-                    
+                    {% endfor %}
+
                 </div>
-                {% endif %}
                 {% endfor %}
-            </div>
-        </div>
 
     </section>
 </main>

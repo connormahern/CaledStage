@@ -1,29 +1,106 @@
+<html>
+    <head>
+    <style>
+        main {
+            background-color: #5288fb;
+            padding-top: 3%;
+            padding-bottom: 50%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 90%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 10px; 
+        }
+        .container-box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 80%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+
+        .body1 {
+            height: 80%;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -ms-flex-align: center;
+            -ms-flex-pack: center;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #ffffff;
+        }
+        
+        .form-send {
+            width: 100%;
+            padding: 15px;
+            margin: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .form-send .checkbox {
+            font-weight: 400;
+        }
+        .form-send .form-group{
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .form-send .form-control:focus {
+            z-index: 2;
+        }
+        .form-group select[type="textA"]{
+            max-height: 500px;
+
+        }
+        
+    </style>
+    </head>
 {% extends "base.html" %}
 
 {% block content %}
 
-<div class="card-deck" style="padding-top: 10px;">
-    
-    {% for o in organizations %}
-    <div class="card bg-light mb-3">
-        <div class="card-body">
-        <h5 class="card-header mb-3">{{ o.name }}</h5>
-        <form method = "POST" action = "/organizations">
-            <button type="submit" name="orgPageReroute" value= {{ o.id }} class="btn btn-primary"> See Details </button>
-        </form>
-    
-        </div>
-    </div>
-    {% endfor %}
-    <form action="/organizationAddition">
-        <a href="organizationAddition.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Create Organization </button></a> 
-    </form> 
-    
-</div>
 
-
-
-
-
+<main>
+    <section class="container-sm bg-light rounded container-box-shadow"> 
+        <div class="card-deck"></div>
+            {% for o in organizations %}
+            <div class="card bg-light box-shadow mb-3">
+                <div class="card-body box-shadow">
+                    <h2 class="card-body mb-3">{{ o.name }}</h2>
+                    <form method = "POST" action = "/organizations">
+                        <button type="submit" name="orgPageReroute" value= {{ o.id }} class="btn btn-primary"> See Details </button>
+                    </form>
+                
+                    </div>
+                </div>
+                {% endfor %}
+                <form action="/organizationAddition">
+                    <a href="organizationAddition.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Create Organization </button></a> 
+                </form> 
+            
+            </div>
+        </div>    
+    </section>
+</main>
 
 {% endblock %}
+
+</html>
+

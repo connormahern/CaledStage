@@ -113,14 +113,16 @@
 {% include 'nav.html' %}
 <main>
     <section class="container-sm bg-light rounded container-box-shadow">
+    
         <div class="row">
             <div class="col-12">
                 <h6 class="display-6 fw-bold text-center border-bottom border-gray" style="margin-top: 25px;"> Courses </h6>
             </div>
         </div>
 
+
         {% for c in course %}
-        <div class="row rounded box-shadow text-start" style="margin-left: 50px;">
+        <div class="row rounded box-shadow text-start" style="margin-left: 50px; margin-top: 10px;">
             <div class="col-12 border-bottom border-gray" style="margin-top: 10px;">
                 <h5>{{ c.name }}</h5>
             </div>

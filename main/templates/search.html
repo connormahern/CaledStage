@@ -86,13 +86,14 @@
 {% include 'nav.html' %}
 <main>
     <section class="container-sm bg-light rounded container-box-shadow"> 
-        <div class="card-deck" style="margin-top: 10px;">
-            <h1>Results</h1>
+        <div class="card-deck" style="margin-top: 10px; margin-left: 100px;">
+            <h1 style="margin-left: 39%;">Results</h1>
             {% if userType == 'Student' or userType == 'Instructor' %}
             {% if profiles['name']|length > 0 %}
             <div class="card bg-light box-shadow mb-3">
                 <h3 class="card-header mb-3">Users</h3>
                     {% for item in range(profiles['name'] | length) %}
+                    <div class="row" style="max-width: 80%; margin-left: 90px; margin-top: 5px;">
                         <div class="card-body box-shadow">   
                         <h5 class="card-header mb-3">{{ profiles['name'][item] }}</h5>
                         <p>{{ profiles['email'][item] }}</p>
@@ -100,6 +101,7 @@
                             <button type="submit" name="profile" value="{{profiles['id'][item]}}" class="btn btn-primary"> See Details </button>
                         </form>
                         </div>
+                    </div>
                     {% endfor %}    
             </div>
             {% endif %}
@@ -107,13 +109,14 @@
             <div class="card bg-light box-shadow mb-3">
             <h3 class="card-header mb-1">Courses</h3>
                 {% for item in range(courses['name'] | length) %}
-                    
+                <div class="row" style="max-width: 80%; margin-left: 90px; margin-top: 5px;">
                     <div class="card-body box-shadow">   
                     <h5 class="card-header mb-3">{{ courses['name'][item] }}</h5>
                     <form method = "POST" action = "/courses">
                         <button type="submit" name="courseReroute" value="{{courses['id'][item]}}" class="btn btn-primary"> See Details </button>
                     </form>
                     </div>
+                </div>
                 {% endfor %}  
             </div>
             {% endif %}
@@ -121,6 +124,7 @@
             <div class="card bg-light box-shadow mb-3">
                 <h3 class="card-header mb-3">Messages</h3>
                     {% for item in range(messages['name'] | length) %}
+                    <div class="row" style="max-width: 80%; margin-left: 90px; margin-top: 5px;">
                         <div class="card-body box-shadow">   
                         <h5 class="card-header mb-3">{{ messages['name'][item] }}</h5>
                         <p>{{ messages['email'][item] }}</p>
@@ -129,6 +133,7 @@
                             <button type="button" name="messages" class="btn btn-primary"> See Details </button>
                         </a>
                         </div>
+                    </div>
                     {% endfor %}    
             </div>
             {% endif %}
@@ -136,6 +141,7 @@
             <div class="card bg-light box-shadow mb-3">
                 <h3 class="card-header mb-3">Assignments</h3>
                     {% for item in range(assignments['name'] | length) %}
+                    <div class="row" style="max-width: 80%; margin-left: 90px; margin-top: 5px;">
                         <div class="card-body box-shadow">   
                         <h5 class="card-header mb-3">{{ assignments['name'][item] }}</h5>
                         <h6 class="card-body mb-3">{{ assignments['points'][item] }}</h6>
@@ -144,6 +150,7 @@
                             <button type="button" class="btn btn-primary"> See Details </button>
                         </a>
                         </div>
+                    </div>
                     {% endfor %}    
             </div>
             {% endif %}
@@ -151,6 +158,7 @@
             <div class="card bg-light box-shadow mb-3">
                 <h3 class="card-header mb-3">Modules</h3>
                     {% for item in range(modules['name'] | length) %}
+                    <div class="row" style="max-width: 80%; margin-left: 90px; margin-top: 5px;">
                         <div class="card-body box-shadow">   
                         <h5 class="card-header mb-3">{{ modules['name'][item] }}</h5>
                         <p>{{ modules['course'][item] }}</p>
@@ -158,6 +166,7 @@
                             <button type="button" class="btn btn-primary"> See Details </button>
                         </a>
                         </div>
+                    </div>
                     {% endfor %}    
             </div>
             {% endif %}
@@ -167,6 +176,7 @@
             <div class="card bg-light box-shadow mb-3">
                 <h3 class="card-header mb-3">Users</h3>
                     {% for item in range(profiles['name'] | length) %}
+                    <div class="row" style="max-width: 80%; margin-left: 90px; margin-top: 5px;">
                         <div class="card-body box-shadow">   
                         <h5 class="card-header mb-3">{{ profiles['name'][item] }}</h5>
                         <p>{{ profiles['email'][item] }}</p>
@@ -174,21 +184,24 @@
                             <button type="submit" name="profile" value="{{profiles['id'][item]}}" class="btn btn-primary"> See Details </button>
                         </form>
                         </div>
+                    </div>
                     {% endfor %}    
             </div>
             {% endif %}
             <div class="card bg-light box-shadow mb-3">
                 <h3 class="card-header mb-3">Organizations</h3>
                     {% for item in range(organizations['name'] | length) %}
+                    <div class="row" style="max-width: 80%; margin-left: 90px; margin-top: 5px;">
                         <div class="card-body box-shadow">   
                         <h5 class="card-header mb-3">{{ organizations['name'][item] }}</h5>
                             <a href=organizations>
                                 <button type="button" class="btn btn-primary text-center"> See Details </button>
                             </a>
                         </div>
+                    </div>
                     {% endfor %}    
             </div>
-        
+
             {% endif %}
         </div>
     </section>

@@ -13,6 +13,8 @@ from main import models
 from io import BytesIO
 import datetime
 
+import time
+
 #engine = create_engine('sqlite:///db.sqlite')
 views = Blueprint('views', __name__)
 
@@ -26,15 +28,138 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('splash.html')
 
-@views.route('/index')
+@views.route('/main_page')
 @login_required
 def MainP():
-    #This is our main page for calander and general organization
+    coursesDict = []
+    current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Instructor' :
+        intructorCourses = Course.query.filter(Course.instructorId == current.id)
+        
+        coursesDict = []
+
+        for course in intructorCourses :
+            currentCorse = {
+                'id' : course.id,
+                'name' : course.name,
+                'teacherId' : course.instructorId,
+                'desc' : course.description
+            }
+            coursesDict.append(currentCorse)
+            
+    elif current.userType == 'Student' :
+        studentCourses = StudentCourses.query.filter(StudentCourses.studentId == current.id)
+        
+
+        coursesDict = []
+
+        for course in studentCourses:
+            currentCourse = Course.query.filter(Course.id == course.courseId).first()
+        
+            currentCorse = {
+                'id' : currentCourse.id,
+                'name' : currentCourse.name,
+                'teacherId' : currentCourse.instructorId,
+                'desc' : currentCourse.description
+            }
+            coursesDict.append(currentCorse)
 
 
-    return render_template('index.html', name=current_user.name)
+    assignmentList = []
+    announList=[]
+    if current.userType == "Instructor" :
+        courseI = Course.query.filter(Course.instructorId == current.id)
+        assignmentList = []
+        announList=[]
+        for c in courseI :
+            announ =  Announcement.query.filter(c.id == Announcement.courseId)
+            for ann in announ :
+                announList.append(ann)
+           
+
+
+            assignment = Assignment.query.filter(Assignment.courseId == c.id)
+            for a in assignment :
+                assignmentList.append(a)
+
+
+    if current.userType == "Student" :
+        courseS = StudentCourses.query.filter(StudentCourses.studentId == current.id)
+        assignmentList = []
+        announList=[]
+        for c in courseS :
+            course = c.course
+            announ =  Announcement.query.filter(course.id == Announcement.courseId)
+            for ann in announ :
+                announList.append(ann)
+           
+
+            assignment = Assignment.query.filter(Assignment.courseId == course.id)
+            for a in assignment :
+                assignmentList.append(a)
+
+    announDict = []
+    for announ in announList :
+        currentAnnoun = {'courseName' : announ.name, 'subjectLine' : announ.subject, 'announcement' : announ.description, 'time' : str(announ.dateTime.date())}
+        announDict.append(currentAnnoun)
+    
+    assDict = []
+    for a in assignmentList :
+        
+        currentAs= {'id' : a.id, 'name' : a.name, 'desc' : a.description, 'dueDate' : a.dueDate[:10], 'id' : a.id}
+        assDict.append(currentAs)
+
+    oneWeekList = []
+    day0Announ = []
+    day1Announ = []
+    day2Announ = []
+    day3Announ = []
+    day4Announ = []
+    day5Announ = []
+    day6Announ = []
+    day0As = []
+    day1As = []
+    day2As = []
+    day3As= []
+    day4As = []
+    day5As = []
+    day6As= []
+    day0 = datetime.date.today()
+    oneWeekList.append({'d' : day0, 'anList' : day0Announ, 'asList' : day0As})
+    day1 = day0 + datetime.timedelta(days=1)
+    oneWeekList.append({'d' : day1, 'anList' : day1Announ, 'asList' : day1As})
+    day2 = day1 + datetime.timedelta(days=1)
+    oneWeekList.append({'d' : day2, 'anList' : day2Announ, 'asList' : day2As})
+    day3 = day2 + datetime.timedelta(days=1)
+    oneWeekList.append({'d' : day3, 'anList' : day3Announ, 'asList' : day3As})
+    day4 = day3 + datetime.timedelta(days=1)
+    oneWeekList.append({'d' : day4, 'anList' : day4Announ, 'asList' : day4As})
+    day5 = day4 + datetime.timedelta(days=1)
+    oneWeekList.append({'d' : day5, 'anList' : day5Announ, 'asList' : day5As})
+    day6 = day5 + datetime.timedelta(days=1)
+    oneWeekList.append({'d' : day6, 'anList' : day6Announ, 'asList' : day6As})
+
+    
+    #dt.strptime("10/12/13", "%m/%d/%y")
+
+   
+    for announ in announDict :
+        for day in oneWeekList:
+            if announ['time'] == str(day['d']) :
+                day['anList'].append(announ)
+
+    for ass in assDict :
+        for day in oneWeekList:
+            if ass['dueDate'] == day['d'].strftime("%Y-%m-%d") :
+                day['asList'].append(ass)
+
+
+
+
+
+    return render_template('index.html', course=coursesDict ,weeksTime = oneWeekList, announDict = announDict, assDict = assDict, announList=announList)
 
 
 
@@ -1133,35 +1258,53 @@ def calendar_events():
     
     assDict = []
     for a in assignmentList :
-        currentAs= {'name' : a.name, 'desc' : a.description, 'dueDate' : a.dueDate, 'id' : a.id}
+        
+        currentAs= {'id' : a.id, 'name' : a.name, 'desc' : a.description, 'dueDate' : a.dueDate[:10], 'id' : a.id}
         assDict.append(currentAs)
 
-    oneWeekList = {}
+    oneWeekList = []
+    day0Announ = []
+    day1Announ = []
+    day2Announ = []
+    day3Announ = []
+    day4Announ = []
+    day5Announ = []
+    day6Announ = []
+    day0As = []
+    day1As = []
+    day2As = []
+    day3As= []
+    day4As = []
+    day5As = []
+    day6As= []
     day0 = datetime.date.today()
-    oneWeekList[day0] = []
+    oneWeekList.append({'d' : day0, 'anList' : day0Announ, 'asList' : day0As})
     day1 = day0 + datetime.timedelta(days=1)
-    oneWeekList[day1] = []
+    oneWeekList.append({'d' : day1, 'anList' : day1Announ, 'asList' : day1As})
     day2 = day1 + datetime.timedelta(days=1)
-    oneWeekList[day2] = []
+    oneWeekList.append({'d' : day2, 'anList' : day2Announ, 'asList' : day2As})
     day3 = day2 + datetime.timedelta(days=1)
-    oneWeekList[day3] = []
+    oneWeekList.append({'d' : day3, 'anList' : day3Announ, 'asList' : day3As})
     day4 = day3 + datetime.timedelta(days=1)
-    oneWeekList[day4] = []
+    oneWeekList.append({'d' : day4, 'anList' : day4Announ, 'asList' : day4As})
     day5 = day4 + datetime.timedelta(days=1)
-    oneWeekList[day5] = []
+    oneWeekList.append({'d' : day5, 'anList' : day5Announ, 'asList' : day5As})
     day6 = day5 + datetime.timedelta(days=1)
-    oneWeekList[day6] = []
+    oneWeekList.append({'d' : day6, 'anList' : day6Announ, 'asList' : day6As})
 
+    
     #dt.strptime("10/12/13", "%m/%d/%y")
 
-    for day in oneWeekList :
-        tempDayL = []
-        for announ in announDict :
-            if announ['time'] == str(day) :
-                tempDayL.append(announ)
+   
+    for announ in announDict :
+        for day in oneWeekList:
+            if announ['time'] == str(day['d']) :
+                day['anList'].append(announ)
 
-        oneWeekList.get(day).append(tempDayL)
-    
+    for ass in assDict :
+        for day in oneWeekList:
+            if ass['dueDate'] == day['d'].strftime("%Y-%m-%d") :
+                day['asList'].append(ass)
 
 
 

@@ -1,5 +1,250 @@
-{% extends "base.html" %}
+<html>
 
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Base </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+         main {
+            background-color: #5288fb;
+            padding-top: 2%;
+            padding-bottom: 50%;
+        }
+
+        .customButton1 {
+            width: 150px;
+        }
+        .customButton2 {
+            width: 200px;
+        }
+        .customButton3 {
+            width: 150px;
+        }
+        .rowMargin1 {
+            margin-top: 35px;
+            margin-left: 150px; 
+            margin-bottom: 35px; 
+        }
+        .rowMargin2 {
+            margin-top: 5px;
+            margin-left: 55px;
+            margin-bottom: 25px;
+        }
+        .courseName{
+            margin-top: 15px;
+            margin-bottom: 35px; 
+        }
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 90%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+        .container-box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+            box-sizing: content-box;
+            width: 80%;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            padding-bottom: 35px; 
+        }
+        .innerL-box-shadow{
+            margin-left: 30px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            margin-right: px;
+        }
+        .innerR-box-shadow{
+            margin-right: 30px;
+            margin-left: 50px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+
+        .announ-box-shadow{
+            margin-right: 10px;
+            margin-left: 10px;
+            max-width: 80%;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+            
+        }
+
+        .module-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: .15rem .15rem .25rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+        .asssignment-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+        a:active{
+            color: #5288fb;
+        }
+        a:hover{
+            color: black;
+        }
+        a:visited{
+            color: #5288fb;
+        }
+
+    </style>
+
+</head>
 {% block content %}
+{% include 'nav.html' %}
+<main>
+    <section class="container-sm bg-light rounded container-box-shadow">
+        <div class="row">
+            <div class="col-12">
+                <h6 class="display-6 fw-bold text-center border-bottom border-gray" style="margin-top: 25px;"> Your Day at a Glance! </h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h6 class="display-6 fw-bold text-center" style="margin-top: 25px;"> Courses </h6>
+            </div>
+        </div>
+        <div class="row rounded box-shadow" style="margin-left: 50px;">
+    
+            {% for c in course %}
+            <div class="card" style="width: 20rem; margin-left: 5px; margin-right: 5px; margin-top: 25px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ c.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Instructor {{c.teacherId}}</h6>
+                    <p class="card-text">{{c.desc}}</p>
+                    <div class="row mb-2">
+                        <div class="col-7">
+                            <form method = "post" action = "/courses">
+                                <button type="submit" name="courseReroute" value= {{ c.id }} class="btn btn-primary"> See Details </button>
+                            </form>
+                        </div>
+    
+                        <div class="col-5">
+                            <a href=/modules>
+                                <button type="button" class="btn btn-primary col-12"> Modules </button>
+                            </a>
+                        </div>
+    
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        
+<div class="row mb-2">
+    <div class="col-12 text-center" style="margin-top: 13px; margin-right: 10px;">
+        <h2> <strong> Calender </strong></h2>
+        {% for date in weeksTime %}
+
+        <div class="row rounded box-shadow" style="margin-left: 55px; margin-top: 10px; margin-bottom: 5px;"> 
+            <div class="col-12 text-center" style="margin-top: 10px;"> 
+                <h4> <strong> {{date['d'].strftime("%B %d, %Y")}} </strong></h4>
+            </div>
+
+            {% for d in date['anList'] %}
+            <div class="row rounded box-shadow" style="margin-left: 35px; margin-top: 10px">
+                <div class="col-12 border-bottom border-gray">
+                    <div class="row mb-2" style="margin-top: 10px;">
+
+                        <div class="col-6 text-start">
+                            <h6> <strong> {{d.subjectLine}} </strong></h6>
+                        </div>
+    
+                        <div class="col-6 text-end">
+                            {{d.courseName}}
+                        </div>
+
+                    </div>
+
+                </div>    
+                
+                <div class="row mb-1" style="margin-top: 10px;">
+                    <div class="col-12 text-start">
+                        {{d.announcement}}
+                    </div>
+
+                </div>
+                <div class="row mb-1" style="margin-top: 10px;">
+                    <div class="col-12 text-end">
+                        <form>
+                            <a href=/announcements>
+                                <button type="button" class="btn btn-primary text-center"> Announcements </button>
+                            </a>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+            {% for ass in date['asList'] %}
+            <div class="row rounded box-shadow" style="margin-left: 35px; margin-top: 10px">
+                <div class="col-12 border-bottom border-gray">
+                    <div class="row mb-2" style="margin-top: 10px;">
+
+                        <div class="col-6 text-start">
+                            <h6> <strong> {{ass.name}} </strong></h6>
+                        </div>
+    
+                        <div class="col-6 text-end">
+                            {{ass.dueDate}}
+                        </div>
+
+                    </div>
+
+                </div>    
+                
+                <div class="row mb-1" style="margin-top: 10px;">
+                    <div class="col-12 text-start">
+                        {{ass.desc}}
+                    </div>
+
+                </div>
+                <div class="row mb-1" style="margin-top: 10px;">
+                    <div class="col-12 text-end">
+                    
+                        <form method="POST" action="/assignments">
+    
+                            <button class="btn btn-primary col-3" style="margin-top: 5px;" type="submit" name = 'aId' value = {{ass.id}} > Visit Assingment Page </button>
+                                
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endfor %}
+    </section>
+</main>
+
+
+
 
 {% endblock %}
+
+</html>
