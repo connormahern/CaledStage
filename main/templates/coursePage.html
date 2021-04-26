@@ -12,7 +12,7 @@
         main {
             background-color: #5288fb;
             padding-top: 15px;
-            padding-bottom: 50px;
+            padding-bottom: 30%;
         }
 
         .customButton1 {
@@ -101,10 +101,10 @@
 {% include 'nav.html' %}
 <main>
     <section class="container-sm bg-light rounded box-shadow">
-        <div class="row mb-1 rowMargin1">
-            <div class="col-md-8 courseName text-end">
+        <div class="row" style="margin-top: 25px;">
+            <div class="col-md-12 courseName text-center">
                 <h1> Welcome to {{courseInfo['courseNumber']}} </h1>
-                <h6 style="margin-right: 55px;"> {{courseInfo['instructorName']}}  |  {{courseInfo['intstructorEmail']}}</h6>
+                <h6> {{courseInfo['instructorName']}}  |  {{courseInfo['intstructorEmail']}}</h6>
             </div>
         </div>
 

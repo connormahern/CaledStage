@@ -33,6 +33,9 @@ def index():
 @views.route('/main_page')
 @login_required
 def MainP():
+    current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Admin':
+        return redirect(url_for('views.profile'))
     coursesDict = []
     current = User.query.filter(User.email == session['email']).first()
     if current.userType == 'Instructor' :
@@ -233,6 +236,9 @@ def user_profile(rerouteName):
 @views.route('/courses')
 @login_required
 def courses():
+    current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Admin':
+        return redirect(url_for('views.profile'))
 
     coursesDict = []
     current = User.query.filter(User.email == session['email']).first()
@@ -424,9 +430,12 @@ def announcement_page():
 
 @views.route('/newAnnouncement')       
 def new_announcment() :
-           
+    
     course = Course.query.filter(Course.id == session['rerouteName']).first()
     courseName = course.name   
+
+    current = User.query.filter(User.email == session['email']).first()
+
     return render_template('newAnnouncement.html', courseName=courseName)
 
 @views.route('/newAnnouncement', methods=['POST'])
@@ -457,15 +466,24 @@ def new_announcment_post():
 
 @views.route('/newAssignment')
 def new_assignment() :
+    current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Admin':
+        return redirect(url_for('views.profile'))
+
+
     course = Course.query.filter(Course.id == session['rerouteName']).first()
     modules = Module.query.filter(Module.courseId == course.id)
     moduleNames = []
+    current = User.query.filter(User.email == session['email']).first()
     for m in modules :
         moduleNames.append(m.name)
 
+    if current.userType == 'Instructor':
+        return render_template('newAssignment.html', courseName = course.name, moduleNames=moduleNames)
+    else:
+        return redirect(url_for('views.profile')) #if user is not an admin, they are redirected to the profile page      
     
-    
-    return render_template('newAssignment.html', courseName = course.name, moduleNames=moduleNames)
+   
 
 @views.route('/newAssignment', methods=['POST'])
 def new_assignment_post():
@@ -1217,6 +1235,8 @@ def organization_user_edit_post():
 @login_required
 def calendar_events():
     current = User.query.filter(User.email == session['email']).first()
+    if current.userType == 'Admin':
+        return redirect(url_for('views.profile'))
 
     assignmentList = []
     announList=[]

@@ -11,14 +11,14 @@
         {% for o in orgInfo.users %}
             <p class="card-text">{{ o[0] }}   -   {{ o[1] }}</p>
         {% endfor %}
-        <form action="/organizationUserAddition">
+        <form action="/organizationUserAddition" style="margin-top: 5px;">
             <a href="organizationUserAddition.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Add User </button></a> 
         </form> 
-        <form action="/organizationUserEdit">
+        <form action="/organizationUserEdit" style="margin-top: 5px;">
             <a href="organizationUserEdit.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Edit Users </button></a> 
         </form> 
         
-        <form method = "POST" action = "/organizationPage">
+        <form method = "POST" action = "/organizationPage" style="margin-top: 5px;">
             <button type="submit" name="deleteOrg" value={{ rerouteName }} class="btn btn-primary"> Delete Organization </button>
         </form>
 

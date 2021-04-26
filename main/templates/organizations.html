@@ -1,22 +1,49 @@
 <html>
-    <head>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Caled - Base </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
     <style>
-        main {
+         main {
             background-color: #5288fb;
-            padding-top: 3%;
+            padding-top: 2%;
             padding-bottom: 50%;
         }
 
-        body {
-            height: 100%;
+        .customButton1 {
+            width: 150px;
         }
-
+        .customButton2 {
+            width: 200px;
+        }
+        .customButton3 {
+            width: 150px;
+        }
+        .rowMargin1 {
+            margin-top: 35px;
+            margin-left: 150px; 
+            margin-bottom: 35px; 
+        }
+        .rowMargin2 {
+            margin-top: 5px;
+            margin-left: 55px;
+            margin-bottom: 25px;
+        }
+        .courseName{
+            margin-top: 15px;
+            margin-bottom: 35px; 
+        }
         .box-shadow { 
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
             box-sizing: content-box;
             width: 90%;
             border: solid rgba(0, 0, 0, .05) 1px;
-            padding-bottom: 10px; 
+            padding-bottom: 35px; 
         }
         .container-box-shadow { 
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
@@ -25,77 +52,100 @@
             border: solid rgba(0, 0, 0, .05) 1px;
             padding-bottom: 35px; 
         }
+        .innerL-box-shadow{
+            margin-left: 30px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            margin-right: px;
+        }
+        .innerR-box-shadow{
+            margin-right: 30px;
+            margin-left: 50px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
 
-        .body1 {
-            height: 80%;
-            display: -ms-flexbox;
-            display: -webkit-box;
-            display: flex;
-            -ms-flex-align: center;
-            -ms-flex-pack: center;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #ffffff;
+        .announ-box-shadow{
+            margin-right: 10px;
+            margin-left: 10px;
+            max-width: 80%;
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+            
         }
-        
-        .form-send {
-            width: 100%;
-            padding: 15px;
-            margin: 100px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .form-send .checkbox {
-            font-weight: 400;
-        }
-        .form-send .form-group{
-            position: relative;
-            box-sizing: border-box;
-            height: auto;
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        .form-send .form-control:focus {
-            z-index: 2;
-        }
-        .form-group select[type="textA"]{
-            max-height: 500px;
 
+        .module-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: .15rem .15rem .25rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
         }
-        
+        .asssignment-box-shadow{
+            margin-right: 10px;
+            margin-left: 40px;
+            box-shadow: .15rem .15rem .35rem grey;
+            border: solid rgba(0, 0, 0, .05) 1px;
+            margin-bottom: 35px; 
+            
+        }
+        a:active{
+            color: #5288fb;
+        }
+        a:hover{
+            color: black;
+        }
+        a:visited{
+            color: #5288fb;
+        }
+
     </style>
-    </head>
-{% extends "base.html" %}
+
+</head>
 
 {% block content %}
-
+{% include 'nav.html' %}
 
 <main>
     <section class="container-sm bg-light rounded container-box-shadow"> 
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1> <strong> Organizations </strong> </h1>
+            </div>
+        </div>
+
+        
+
+        </div>
+       
         <div class="card-deck"></div>
             {% for o in organizations %}
-            <div class="card bg-light box-shadow mb-3">
-                <div class="card-body box-shadow">
-                    <h2 class="card-body mb-3">{{ o.name }}</h2>
-                    <form method = "POST" action = "/organizations">
-                        <button type="submit" name="orgPageReroute" value= {{ o.id }} class="btn btn-primary"> See Details </button>
-                    </form>
+            <div class="row" style="margin-left: 55px;">
+                <div class="card bg-light box-shadow mb-3">
+                        <h2 class="card-body mb-1">{{ o.name }}</h2>
+                        <form method = "POST" action = "/organizations">
+                            <button type="submit" name="orgPageReroute" value= {{ o.id }} class="btn btn-primary"> See Details </button>
+                        </form>
+                    
+                        </div>
+                    {% endfor %}
+                    
                 
-                    </div>
                 </div>
-                {% endfor %}
+            </div>
+            <div class="row text-end" style="margin-left: 25px;">
                 <form action="/organizationAddition">
                     <a href="organizationAddition.html"><button type = "submit" name = "addOrganization" class="btn btn-primary custom" > Create Organization </button></a> 
                 </form> 
-            
             </div>
+           
         </div>    
     </section>
 </main>
