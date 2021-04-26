@@ -68,7 +68,7 @@
     <main>
         <div class="container bg-light rounded box-shadow">
             <h6 class="display-6 fw-bold text-center"> Send a Message </h6>
-            <form class = "form-send" method="POST" action="/newModule" enctype="multipart/form-data">
+            <form class = "form-send" method="POST" action="/sendMessage" enctype="multipart/form-data">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                     <div class="alert alert-danger">
